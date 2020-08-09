@@ -171,7 +171,7 @@ $strOut = <<<EOF
                                         <ul class="nospace">
                                                 <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
 						<li><a href="" data-toggle="modal" data-target="#modal_login_popup"><span class="glyphicon glyphicon-log-in"></span> Iniciar Sesion</a>
-						<li><a href="#">Registrarse</a></li>
+						<li><a href="" data-toggle="modal" data-target="#modal_register_popup"><span class="glyphicon glyphicon-log-in"></span> Registrase</a>
                                         </ul>
                                 </div>
                         </div>
