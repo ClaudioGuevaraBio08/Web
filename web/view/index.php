@@ -12,12 +12,13 @@
 </head>
 <body>
   <?php 
-navbar();
-header_pagina();
-main_pagina_in();
-?>
-    
-  <?php footer(); ?>
+    navbar();
+    header_pagina();
+    main_pagina_in();
+  ?>  
+  <?php 
+    footer(); 
+  ?>
   <script src="../controller/index.js"></script>
 </body>
 </html>
