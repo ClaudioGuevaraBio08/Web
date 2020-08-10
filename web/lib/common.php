@@ -113,69 +113,41 @@ echo $str;
 
 function navbar () {
 $strIn = <<<EOF
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-  
-    <div class="navbar-header">      
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#"><b>{$GLOBALS['ini']['brand']}</b></a>
-    </div>
-  
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      
-      <ul class="nav navbar-nav">
-        <li id="active_index">
-          <a href="index.php"><span class="glyphicon glyphicon-home"></span> Inicio</a>
-        </li>
-      </ul>
-      
-      <ul class="nav navbar-nav">
-        <li id="active_admin" class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-cog"></span> Administración<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href=""><span class="glyphicon glyphicon-chevron-right"></span> Empresas</a></li>
-            <li class="divider"></li>
-            <li><a href=""><span class="glyphicon glyphicon-chevron-right"></span> Responsables</a></li>
-          </ul>
-        </li>
-      </ul>
-
-	<ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> {$_SESSION['username']} <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../lib/logout.php"><span class="glyphicon glyphicon-log-in"></span> Cerrar</a></li>
-          </ul>
-        </li>
-      </ul>
-
-    </div>
-  </div>
-</nav>
+<div class="wrapper row">
+	<div id="encabezado" class="hoc clear">
+		<div class="fl_left">
+			<ul class="nospace">
+				<li><i class="fa fa-phone"></i> +56940939963</li>
+			</ul>
+		</div>
+		<div class="fl_right">
+			<ul class="nospace">
+				<li><a href="index.php"><i class="fa fa-lg fa-home"></i></a></li>
+				<li><a class="dropdown-toggle" data-toggle="modal" href="#"><span class="glyphicon glyphicon-user"></span> {$_SESSION['username']} </a>
+				<li><a href="../lib/logout.php"><span class="glyphicon glyphicon-log-in"></span> Cerrar</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
 EOF;
 
 $strOut = <<<EOF
 <div class="wrapper row">
-                        <div id="encabezado" class="hoc clear">
-                                <div class="fl_left">
-                                        <ul class="nospace">
-                                                <li><i class="fa fa-phone"></i> +56940939963</li>
-                                        </ul>
-                                </div>
-                                <div class="fl_right">
-                                        <ul class="nospace">
-                                                <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-						<li><a href="" data-toggle="modal" data-target="#modal_login_popup"><span class="glyphicon glyphicon-log-in"></span> Iniciar Sesion</a>
-						<li><a href="" data-toggle="modal" data-target="#modal_register_popup"><span class="glyphicon glyphicon-log-in"></span> Registrase</a>
-                                        </ul>
-                                </div>
-                        </div>
-                </div>
+	<div id="encabezado" class="hoc clear">
+		<div class="fl_left">
+			<ul class="nospace">
+				<li><i class="fa fa-phone"></i> +56940939963</li>
+			</ul>
+		</div>
+		<div class="fl_right">
+			<ul class="nospace">
+				<li><a href="index.php"><i class="fa fa-lg fa-home"></i></a></li>
+				<li><a href="" data-toggle="modal" data-target="#modal_login_popup"><span class="glyphicon glyphicon-log-in"></span> Iniciar Sesion</a>
+				<li><a href="" data-toggle="modal" data-target="#modal_register_popup"><span class="glyphicon glyphicon-log-in"></span> Registrase</a>
+			</ul>
+		</div>
+	</div>
+</div>
 EOF;
 
   if ($_SESSION["loggedinMIAPP"] == true) {
