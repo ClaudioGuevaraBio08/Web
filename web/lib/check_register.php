@@ -29,9 +29,9 @@
 	      if($stmt->execute()){
 		    $location  = "../index/index.php/";
 		    $success = true;
-		    $msg = "ok";
+		    $msg = "Registro exitoso";
 	      } else {
-		    $msg = "Error desconocido";
+		    $msg = "Este correo ya se encuentra registrado";
 	      }
 	    } else {
 	      $msg = "Contraseñas distintas";
@@ -48,4 +48,3 @@
   $jsonOutput = array('success' => $success, 'msg' => $msg, 'location'=> $location);
   echo json_encode($jsonOutput);
 ?>
-

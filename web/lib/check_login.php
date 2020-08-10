@@ -53,4 +53,3 @@
   $jsonOutput = array('success' => $success, 'msg' => $msg, 'location'=> $location);
   echo json_encode($jsonOutput);
 ?>
-

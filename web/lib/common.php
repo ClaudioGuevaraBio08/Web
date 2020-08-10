@@ -298,7 +298,6 @@ function footer() {
         <p>chichadioss23@gmail.com</p>
       </div>
     </div>
-    <h2 class="titulo-final">&copy; Patrocinador | No tengo :(</h2>
   </footer>
   <script src="../extras/modernizr/modernizr-2.8.3.min.js"></script>
   <script src="../extras/jquery/jquery-3.2.1.min.js"></script>

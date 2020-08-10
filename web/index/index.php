@@ -36,12 +36,12 @@
                 <p></p>
                 <div class="input-group" id="user_input">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                  <input id="username" type="text" class="form-control" name="username"  placeholder="ej: 12345678K" required>
+                  <input id="username" type="text" class="form-control" name="username"  placeholder="Correo" required>
                 </div>
                 <p></p>
                 <div class="input-group" id="user_pass">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                  <input id="password" type="password" class="form-control" name="password" placeholder="clave" required>
+                  <input id="password" type="password" class="form-control" name="password" placeholder="Contraseña" required>
                 </div>
               </div>
               <div class="modal-footer">
@@ -84,7 +84,7 @@
 	              <p></p>
 	              <div class="input-group" id="user_input">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                  <input id="correo" type="text" class="form-control" name="correo"  placeholder="ejemplo@gmail.com" required>
+                  <input id="correo" type="text" class="form-control" name="correo"  placeholder="Correo" required>
                 </div>
                 <p></p>
                 <div class="input-group" id="user_pass">
