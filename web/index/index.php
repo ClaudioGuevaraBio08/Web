@@ -2,19 +2,22 @@
   require_once("../lib/common.php");
 ?>
 
+
 <!DOCTYPE html>
 <head>
-  <?php 
-    head(); 
-  ?>
+<?php 
+  head(); 
+?>
+
 </head>
 
 <body>
-  <?php
-    navbar();
-    header_pagina();
-    main_pagina_out();
-  ?>
+<?php
+navbar();
+header_pagina();
+main_pagina_out();
+?>
+
 
   <!--modals-->
   <div id="modal_login_popup" class="modal fade" role="dialog">

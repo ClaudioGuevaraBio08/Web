@@ -105,7 +105,9 @@ function head () {
   <link rel="stylesheet" href="../extras/jquery/jquery-ui.min.css">
   <link rel="stylesheet" href="../css/common.css">
   EOF;
-  echo $str;
+  if ($_SESSION["loggedinMIAPP"] == true or $_SESSION["loggedinMIAPP"] == false ) {
+    echo $str;
+  }
 }
 
 function navbar () {
@@ -120,6 +122,7 @@ function navbar () {
         </ul>
       </div>
     </div>
+  </div>
   EOF;
 
   $strOut = <<<EOF
@@ -127,12 +130,13 @@ function navbar () {
     <div id="encabezado" class="hoc clear">
       <div class="fl_right">
         <ul class="nospace">
-          <li><a href="index.php"><i class="fa fa-lg fa-home"></i></a></li
+          <li><a href="../index.php"><i class="fa fa-lg fa-home"></i></a></li
           <li><a href="" data-toggle="modal" data-target="#modal_login_popup"><span class="glyphicon glyphicon-log-in"></span> Iniciar Sesion</a>
           <li><a href="" data-toggle="modal" data-target="#modal_register_popup"><span class="glyphicon glyphicon-log-in"></span> Registrase</a>
         </ul>
       </div>
     </div>
+  </div>
   EOF;
 
   if ($_SESSION["loggedinMIAPP"] == true) {
@@ -191,7 +195,8 @@ function main_pagina_in () {
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
   </main>
   EOF;
   echo $str;
@@ -217,10 +222,10 @@ function main_pagina_out () {
           </div>
         </div>
       </div>
-      </section>
-      <section class="about" id="servicio">
-        <div class="contenedor2">
-          <h3>¿Por qué debes trabajar con nosotros?.</h3>
+    </section>
+    <section class="about" id="servicio">
+      <div class="contenedor2">
+        <h3>¿Por qué debes trabajar con nosotros?.</h3>
           <p class="after">Conoce todos los beneficios</p>
         <div class="servicios">
           <div class="caja-servicios">
