@@ -46,6 +46,9 @@ if ($conn) {
 		}
 	} else {
 		$msg = "Todos los datos son requeridos.";
+	}
+    } else {
+      $msg = "Todos los datos son requeridos.";
     }
 } else {
 	$msg = "No puede conectar a la Base de Datos.";
