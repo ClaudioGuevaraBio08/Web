@@ -103,6 +103,27 @@ EOF;
   	}
 }
 
+function head_lenguajes (){
+	$str = <<<EOF
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Mi app we</title>
+
+	<link href="../css/all.min.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+	<link href="../css/sb-admin-2.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/estilos.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<link href="../css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+EOF;
+	echo $str;
+}
+
 function navbar (){
 	$strIn = <<<EOF
 	<div class="navbar navbar-light" style="background-color: hsla(195, 46%, 5%, 0.1);">
@@ -115,16 +136,10 @@ function navbar (){
 				</ul>
 			</div>
 		</div>
-	</div>
 EOF;
 	$strOut = <<<EOF
 	<div class="navbar navbar-light" style="background-color: hsla(195, 46%, 5%, 0.1);">
         	<div id="encabezado" class="hoc clear">
-                	<div class="fl_left">
-                        	<ul class="nospace">
-                                	<li><i class="fa fa-phone"></i> +56940939963</li>
-                        	</ul>
-                	</div>
                 	<div class="fl_right">
                         	<ul class="nospace">
                                 	<li><a href="../index/index.php"><i class="fa fa-lg fa-home"></i></a></li>
@@ -159,7 +174,7 @@ function main_pagina_in (){
 	<main>
 		<section class="galeria">
 			<div class="contenedor2">
-				<h2 class="titulo">Lenguajes de Programación disponibles</h2>
+				<h2 class="titulo">¿Qué quieres aprender?</h2>
 				<div class="galeria-port">
 					<div class="imagen-galeria">
 						<img src="../img/imagen1.png" alt="">
@@ -171,8 +186,7 @@ function main_pagina_in (){
 					<div class="imagen-galeria">
 						<img src="../img/imagen2.jpg" alt="">
 						<div class="hover-galeria">
-							<img src="../img/icono.png" alt="">
-							<p>Saber más</p>
+							<a href="../view/c.php"> <img src="../img/icono.png" alt=""></a>
 						</div>
 					</div>
 					<div class="imagen-galeria">
@@ -281,6 +295,252 @@ EOF;
 echo $str;
 }
 
+function pagina_c (){
+	$str = <<<EOF
+	<div id="wrapper">
+    			<!-- Sidebar -->
+				<ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion"  id="accordionSidebar">
+
+      				<!-- Sidebar - Brand -->
+      				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        				<div class="sidebar-brand-icon rotate-n-15">
+          					<i class="fas fa-laugh-wink"></i>
+        				</div>
+        				<div class="sidebar-brand-text mx-3">C</div>
+     				</a>
+
+      				<!-- Divider -->
+      				<hr class="sidebar-divider my-0">
+
+      				<!-- Nav Item - Dashboard -->
+      				<li class="nav-item active">
+        				<a class="nav-link" href="index.html">
+          				<i class="fas fa-fw fa-tachometer-alt"></i>
+          				<span>Inicio</span></a>
+      				</li>
+
+				<!-- Divider -->
+      				<hr class="sidebar-divider">
+
+      				<!-- Heading -->
+      				<div class="sidebar-heading">
+        				Interface
+      				</div>
+
+				<!-- Nav Item - Pages Collapse Menu -->
+      				<li class="nav-item">
+        				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          					<i class="fas fa-fw fa-cog"></i>
+          					<span>Components</span>
+        				</a>
+        				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          					<div class="bg-white py-2 collapse-inner rounded">
+            						<h6 class="collapse-header">Custom Components:</h6>
+            						<a class="collapse-item" href="buttons.html">Buttons</a>
+            						<a class="collapse-item" href="cards.html">Cards</a>
+          					</div>
+        				</div>
+      				</li>
+
+				<!-- Nav Item - Utilities Collapse Menu -->
+      				<li class="nav-item">
+        				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+          					<i class="fas fa-fw fa-wrench"></i>
+          					<span>Utilities</span>
+        				</a>
+        				<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          					<div class="bg-white py-2 collapse-inner rounded">
+            						<h6 class="collapse-header">Custom Utilities:</h6>
+            						<a class="collapse-item" href="utilities-color.html">Colors</a>
+            						<a class="collapse-item" href="utilities-border.html">Borders</a>
+            						<a class="collapse-item" href="utilities-animation.html">Animations</a>
+            						<a class="collapse-item" href="utilities-other.html">Other</a>
+          					</div>
+        				</div>
+      				</li>
+
+      				<!-- Divider -->
+      				<hr class="sidebar-divider">
+
+      				<!-- Heading -->
+      				<div class="sidebar-heading">
+        				Addons
+      				</div>
+				
+				<!-- Nav Item - Pages Collapse Menu -->
+      				<li class="nav-item">
+        				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          					<i class="fas fa-fw fa-folder"></i>
+          					<span>Pages</span>
+        				</a>
+        				<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          					<div class="bg-white py-2 collapse-inner rounded">
+            						<h6 class="collapse-header">Login Screens:</h6>
+            						<a class="collapse-item" href="login.html">Login</a>
+            						<a class="collapse-item" href="register.html">Register</a>
+            						<a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+            						<div class="collapse-divider"></div>
+            						<h6 class="collapse-header">Other Pages:</h6>
+            						<a class="collapse-item" href="404.html">404 Page</a>
+            						<a class="collapse-item" href="blank.html">Blank Page</a>
+          					</div>
+        				</div>
+      				</li>
+
+				<!-- Nav Item - Charts -->
+      				<li class="nav-item">
+        				<a class="nav-link" href="charts.html">
+          					<i class="fas fa-fw fa-chart-area"></i>
+          					<span>Charts</span></a>
+     	 			</li>
+
+      				<!-- Nav Item - Tables -->
+      				<li class="nav-item">
+        				<a class="nav-link" href="tables.html">
+          					<i class="fas fa-fw fa-table"></i>
+          					<span>Tables</span></a>
+      				</li>
+
+      				<!-- Divider -->
+      				<hr class="sidebar-divider d-none d-md-block">
+
+      				<!-- Sidebar Toggler (Sidebar) -->
+      				<div class="text-center d-none d-md-inline">
+        				<button class="rounded-circle border-0" id="sidebarToggle"></button>
+      				</div>
+			</ul>
+
+			<div id="content-wrapper" class="d-flex flex-column">
+				<div id="content">
+					<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+						<ul class="navbar-nav ml-auto">
+							<div class="topbar-divider d-none d-sm-block"></div>
+							<li class="nav-item dropdown no-arrow">
+								<div id="encabezado" class="hoc clear">
+									<div class="fl_right">
+										<ul class="nospace">
+											<li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
+											<li><a class="dropdown-toggle" data-toggle="modal" href="#"><span class="glyphicon glyphicon-user"></span> {$_SESSION['username']} </a>
+											<li><a href="../lib/logout.php"><span class="glyphicon glyphicon-log-in"></span> Cerrar</a></li>
+
+										</ul>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</nav>
+
+					<div class="container-fluid">
+						<div class="d-sm-flex align-items-center justify-content-between mb-4">
+            						<h1 class="h3 mb-0 text-gray-800">Lenguaje de Programación C</h1>
+          					</div>
+						<div class="row">
+							<div class="col-xl-8 col-lg-7">
+                                                                <div class="card shadow mb-4">
+                                                                        <div class="card-header py-3">
+                                                                                <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                                                                        </div>
+									 <div class="card-body">
+                  								<div class="text-center">
+                    									<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="bucle-while-pciture.png" alt="">
+                  								</div>
+                  								<p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
+                  								<a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
+										 <div class="text-center">
+                                                                                	<iframe width="560" height="315" src="https://www.youtube.com/embed/iVt04mP5nc8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+										 </div>
+										<p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
+                                                                                <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
+                							</div>
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-5">
+                                                                <div class="card shadow mb-4">
+                                                                        <div class="card-header py-3">
+                                                                                <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                                                                        </div>
+									<div class="card-body">
+                                                                                <div class="text-center">
+                                                                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
+                                                                                </div>
+                                                                                <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
+                                                                                <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+						</div>
+						<div class="row">
+                                                        <div class="col-lg-6 mb-4">
+                                                                <div class="card shadow mb-4">
+                                                                        <div class="card-header py-3">
+                                                                                <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                                                                        </div>
+									<div class="card-body">
+                                                                                <div class="text-center">
+                                                                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
+                                                                                </div>
+                                                                                <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
+                                                                                <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-lg-6 mb-4">
+                                                                <div class="card shadow mb-4">
+                                                                        <div class="card-header py-3">
+                                                                                <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                                                                        </div>
+									<div class="card-body">
+                                                                                <div class="text-center">
+                                                                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
+                                                                                </div>
+                                                                                <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
+                                                                                <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </div>
+						<div class="row">
+							<div class="container-fluid">
+								<h1 class="h3 mb-2 text-gray-800">Tables</h1>
+          							<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+								<div class="card shadow mb-4">
+            								<div class="card-header py-3">
+              									<h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            								</div>
+									<div class="card-body">
+										<div class="table-responsive">
+											<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+												<thead>
+                    											<tr>
+                      												<th>Nombre del Ejercicio</th>
+                      												<th>Link</th>
+                      												<th>Dificultad</th>
+                      												<th>Elementos a utilizar</th>
+                    											</tr>
+                  										</thead>
+												<tbody>
+													<tr>
+														<th>Multiplicaciones</th>
+														<th>https://www.youtube.com/watch?v=iVt04mP5nc8</th>
+														<th>Facil</th>
+														<th>while, for</th>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+EOF;
+echo $str;
+}
+
+
 function footer(){
 	$str = <<<EOF
 	<footer>
@@ -309,7 +569,18 @@ EOF;
 echo $str;
 }
 
-
+function footer_paginas(){
+	$str = <<<EOF
+	<script src="../vendor/jquery/jquery.min.js"></script>
+	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script src="../js/sb-admin-2.min.js"></script>
+	<script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+	<script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+	<script src="../js/demo/datatables-demo.js"></script>
+EOF;
+echo $str;
+}
 
 
 

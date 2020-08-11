@@ -22,7 +22,8 @@ if ($conn) {
 	    			$correo = $_POST['correo'];
 	    			$password = $_POST['pwd'];
 	    			$confirm_password = $_POST['pwd_confirm'];
-      				$encrypted_password = encriptar($password);       	
+      				$encrypted_password = encriptar($password);#sacamos el encriptar!
+          	
       				$sql = "insert into usuario values (:correo, 1, 1, :password, :nombre, :apellido, '14/07/2020')";
       				$stmt = $conn->prepare($sql);
 				$stmt->bindValue(':nombre', $nombre);
@@ -49,10 +50,10 @@ if ($conn) {
       		}
     	} else {
       		$msg = "1Todos los datos son requeridos.";
-    	}
-	} else {
-		$msg = "2Todos los datos son requeridos.";
 	}
+	} else {
+                $msg = "2Todos los datos son requeridos.";
+        }
 } else {
 	$msg = "No puede conectar a la Base de Datos.";
 }

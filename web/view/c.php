@@ -7,17 +7,16 @@ validarSesion();
 <!DOCTYPE html>
 <head>
 <?php 
-head(); 
+head_lenguajes(); 
 ?>
 </head>
 
 <body>
 <?php 
-navbar();
-main_pagina_in();
+pagina_c();
 ?>
     
-<?php footer(); ?>
+<?php footer_paginas(); ?>
 <script src="../controller/index.js"></script>
 </body>
 </html>
