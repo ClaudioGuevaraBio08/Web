@@ -133,7 +133,6 @@ EOF;
                         	</ul>
                 	</div>
         	</div>
-	</div>
 EOF;
 if ($_SESSION["loggedinMIAPP"] == true){
 	echo $strIn;

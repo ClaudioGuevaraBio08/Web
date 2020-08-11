@@ -15,7 +15,7 @@ if ($conn) {
 		if ($_POST['username']!="" and $_POST['pwd']!="") {
 			$id_usu = $_POST['username'];
 			$password = $_POST['pwd'];
-			$encrypted_password = $password;#sacamos el encriptar!
+			$encrypted_password = encriptar($password);
 			$sql = "select * from usuario where correo = :id_usu and contrasena = :password";
 			$stmt = $conn->prepare($sql);
 			$stmt->bindValue(':id_usu', $id_usu);
@@ -48,7 +48,7 @@ if ($conn) {
 		$msg = "Todos los datos son requeridos.";
 	}
     } else {
-      $msg = "Todos los datos son requeridos.";
+	    $msg = "Todos los datos son requeridos.";
     }
 } else {
 	$msg = "No puede conectar a la Base de Datos.";

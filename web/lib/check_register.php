@@ -18,17 +18,17 @@ if ($conn) {
 		if ($_POST['usernombre']!="" and $_POST['userapellido']!= "" and $_POST['correo']!="" and $_POST['pwd']!="" and $_POST['pwd_confirm'] != "") {
 			if ($_POST['pwd'] == $_POST['pwd_confirm']){
 				$nombre = $_POST['usernombre'];
-	    		$apellido = $_POST['userapellido'];
-	    		$correo = $_POST['correo'];
-	    		$password = $_POST['pwd'];
-	    		$confirm_password = $_POST['pwd_confirm'];
-      			$encrypted_password = encriptar($password);       	
-      			$sql = "insert into usuario values (:correo, 1, 1, :password, :nombre, :apellido, '14/07/2020')";
-      			$stmt = $conn->prepare($sql);
+	    			$apellido = $_POST['userapellido'];
+	    			$correo = $_POST['correo'];
+	    			$password = $_POST['pwd'];
+	    			$confirm_password = $_POST['pwd_confirm'];
+      				$encrypted_password = encriptar($password);       	
+      				$sql = "insert into usuario values (:correo, 1, 1, :password, :nombre, :apellido, '14/07/2020')";
+      				$stmt = $conn->prepare($sql);
 				$stmt->bindValue(':nombre', $nombre);
 				$stmt->bindValue(':apellido', $apellido);
 				$stmt->bindValue(':correo', $correo);
-      			$stmt->bindValue(':password', $encrypted_password);
+      				$stmt->bindValue(':password', $encrypted_password);
 				if($stmt->execute()){
 					$array_session = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 					if (count($array_session) == 1) {
@@ -51,7 +51,7 @@ if ($conn) {
       		$msg = "1Todos los datos son requeridos.";
     	}
 	} else {
-	$msg = "2Todos los datos son requeridos.";
+		$msg = "2Todos los datos son requeridos.";
 	}
 } else {
 	$msg = "No puede conectar a la Base de Datos.";
