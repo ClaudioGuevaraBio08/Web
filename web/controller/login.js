@@ -1,9 +1,15 @@
 // Shorthand for $( document ).ready()
+function cerrar_login(){
+	$("#modal_login_popup").modal('hide');
+}
+
 $(function() {
+  $("#recuperarclave").attr("onClick", "cerrar_login()");
   
   $("#login_form").submit(function () {
     var user_name = $('#username').val().trim();
     var user_password = $('#password').val().trim();
+    
     
     $.ajax({
       type: "POST",

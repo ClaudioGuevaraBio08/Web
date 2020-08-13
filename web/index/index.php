@@ -40,12 +40,14 @@ main_pagina_out();
 							<p></p>
 							<div class="input-group" id="user_pass">
 								<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-								<input id="password" type="password" class="form-control" name="password" placeholder="Contraseña" required>
+								<input id="password" type="password" class="form-control" name="password" placeholder="Contraseña (min tamaño 8)" required>
 							</div>
 						</div>
 						<div class="modal-footer">
-							<div>
+							<div class="text-center">
 								<button id="submit_login" type="submit" class="btn btn-success btn-sm btn-block">Ingresar</button>
+								<p></p>
+								<a id="recuperarclave" class="d-block small" href="" data-toggle="modal" data-target="#modal_recuperarclave_popup">¿Olvidaste tu contraseña?</a>
 							</div>
 						</div>
 					</div>	
@@ -107,10 +109,46 @@ main_pagina_out();
 		</div>
 	</div>
 </div>
+
+<div id="modal_recuperarclave_popup" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Ingreso</h4>
+			</div>
+			<!--form-->
+			<div id="div_form_login">
+				<!--login form-->
+				<form id="recuperarclave_form" name="login_form" class="form-horizontal" role="form" action="" method="POST">
+					<div class="modal-body">
+						<div id="login_msg">
+							<div id="info_login_msg" class="glyphicon glyphicon-chevron-right"></div>
+							<span id="text_login_msg">Credenciales</span>
+							<p></p>
+							<div class="input-group" id="user_input">
+								<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+								<input id="correo_recuperarclave" type="text" class="form-control" name="correo_recuperarclave"  placeholder="Correo" required>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<div class="text-center">
+								<button id="submit_recuperarclave" type="submit" class="btn btn-success btn-sm btn-block">Recuperar Contraseña</button>
+							</div>
+						</div>
+					</div>	
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 <?php
 footer();
 ?>
 <script src="../controller/login.js"></script>
 <script src="../controller/register.js"></script>
+<script src="../controller/recuperar_clave.js"></script>
 
 </body>

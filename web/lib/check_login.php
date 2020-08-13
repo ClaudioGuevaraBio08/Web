@@ -35,7 +35,7 @@ if ($conn) {
 					//registerActivity($id_per, 'true');
 				} else {
 					//registerActivity($id_per, 'false');
-					$msg = "Usuario o Clave erróneos.";
+					$msg = "Usuario no existe.";
 					// registerActivity($id_per, 1, null, 'false', null, 'index');
 				}
 			} else {
