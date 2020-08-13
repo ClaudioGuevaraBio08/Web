@@ -1,8 +1,6 @@
 <?php
 session_start();
 require_once("../lib/common.php");
-$query = "SELECT * from dificultad ORDER BY id_dificultad";
-$resultado = pg_query($query);
 validarSesion();
 ?>
 
@@ -60,32 +58,9 @@ c_ejercicios();
 	</div>
 </div>
 
-<div id="modal_enunciado_popup" class="modal fade" role="dialog">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title"><span id="titulo-modal-enunciado">Ejercicio</span></h4>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-			</div>
-			<!--form-->
-			<div id="div_form_login">
-				<!--login form-->
-				<form id="enunciado_form"  name="enunciado_form" class="form-horizontal" role="form" action="" method="POST">
-					<div class="modal-body">
-						<div id="login_msg">
-							<div id="info_login_msg_enunciado" class="glyphicon glyphicon-chevron-right"></div>
-							<span id="text_login_msg_enunciado">Credenciales</span>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
     
 <?php footer_paginas(); ?>
 <script type="text/javascript" src="../controller/combobox_dificultad.js"></script>
-<script type="text/javascript" src="../controller/tabla_ejercicio.js"></script>
 
 </body>
 </html>

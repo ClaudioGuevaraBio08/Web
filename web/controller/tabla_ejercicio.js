@@ -55,7 +55,7 @@ function obtenerEjercicios(){
             "<button type='button' class='btn btn-warning btn-xs' onclick='editar(" + data[i]["id_actividad"] + ");' title='Editar'>"+
             "<i class='fas fa-edit'></i></button>&nbsp;" +
             "<button type='button' class='btn btn-danger btn-xs' onclick='eliminar(" + data[i]["id_actividad"] + ");' title='Eliminar'>"+
-            "<i class='fas fa-trash'></i></button>"
+            "<i class='fas fa-trash'></i></button>" 
           ]);
         }
       } else {
@@ -67,8 +67,6 @@ function obtenerEjercicios(){
   })
 }
 
-function enunciado(titulo) {
-}
 
 /* levanta el modal para ingresar datos */
 function agregar() {
@@ -104,6 +102,47 @@ function agregarBD() {
       swal('Error', e.responseText, 'error');
     }
   }); 
+}
+
+/* obtiene datos de una especialidad y los muestra en el modal */
+function editar(id_actividad) {
+  document.getElementById("ejercicio_form").reset();
+
+  $.post("../lib/tabla_ejercicios.php?accion=3", {id_actividad: id_actividad}, function(response) {    
+    if (response.success) {
+      $.each(response.data, function(index, value) {
+        if ($("input[name="+index+"]").length && value) {
+          $("input[name="+index+"]").val(value);
+        } else if ($("select[name="+index+"]").length && value){
+          $("select[name="+index+"]").val(value);
+        }
+      });
+    
+      $("#titulo-modal-especialidad").html("Editar");
+      $("#agregar_ejercicio").attr("onClick", "editarBD(" + id_actividad + ")");
+      $("#modal_ejercicios_popup").modal("show");
+    } else {
+      swal('Error', response.msg[2], 'error');
+    }
+  }, 'json');
+}
+
+/* actualiza los datos en la base de datos */
+function editarBD(id_actividad) {
+  val = validarFormularioEspecialista();
+  
+  if (val == false) return false;
+  
+  var form = $("#ejercicio_form").serialize();
+  $.post("../lib/tabla_ejercicios.php?accion=4&id_actividad=" + id_actividad, form, function(response) {
+  
+    if (response.success) {
+      $("#modal_ejercicios_popup").modal("hide");
+      obtenerEjercicios();
+    } else {
+      swal('Error', response.msg[2], 'error');
+    }
+  }, 'json');
 }
 
 /* elimina un registro de la base de datos */
