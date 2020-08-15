@@ -119,6 +119,10 @@ function head_lenguajes (){
 	<link rel="stylesheet" href="../css/estilos.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 	<link href="../css/dataTables.bootstrap4.min.css" rel="stylesheet">
+	
+	<link href="../css/jquery.dataTables.min.css" rel="stylesheet">
+	<link href="../css/buttons.dataTables.min.css" rel="stylesheet">
+	
 	<link rel="stylesheet" href="../extras/sweetalert2/sweetalert2.css">
 	
 	
@@ -181,30 +185,27 @@ function main_pagina_in (){
 				<h2 class="titulo">¿Qué quieres aprender?</h2>
 				<div class="galeria-port">
 					<div class="imagen-galeria">
-						<img src="../img/imagen1.png" alt="">
-						<div class="hover-galeria">
-							<img src="../img/icono.png" alt="">
-							<p>Saber más</p>
-						</div>
-					</div>
-					<div class="imagen-galeria">
 						<img src="../img/imagen2.jpg" alt="">
 						<div class="hover-galeria">
-							<a href="../view/c.php"> <img src="../img/icono.png" alt=""></a>
+							<a href="../view/lenguaje.php?lenguaje=1&nombre_lenguaje=C&ruta_imagen=../img/c.png"> <img src="../img/icono.png" alt=""></a>
 						</div>
 					</div>
 					<div class="imagen-galeria">
 						<img src="../img/imagen3.jpg" alt="">
 						<div class="hover-galeria">
-							<img src="../img/icono.png" alt="">
-							<p>Saber más</p>
+							<a href="../view/lenguaje.php?lenguaje=2&nombre_lenguaje=C&ruta_imagen=../img/cpp.png"> <img src="../img/icono.png" alt=""></a>
+						</div>
+					</div>
+					<div class="imagen-galeria">
+						<img src="../img/imagen1.png" alt="">
+						<div class="hover-galeria">
+							<a href="../view/lenguaje.php?lenguaje=3&nombre_lenguaje=Python&ruta_imagen=../img/python.png"> <img src="../img/icono.png" alt=""></a>
 						</div>
 					</div>
 					<div class="imagen-galeria">
 						<img src="../img/imagen4.jpg" alt="">
 						<div class="hover-galeria">
-							<img src="../img/icono.png" alt="">
-							<p>Saber más</p>
+							<a href="../view/lenguaje.php?lenguaje=4&nombre_lenguaje=Java&ruta_imagen=../img/java.png"> <img src="../img/icono.png" alt=""></a>
 						</div>
 					</div>
 				</div>
@@ -299,7 +300,7 @@ EOF;
 echo $str;
 }
 
-function pagina_c (){
+function pagina_lenguaje (){
 	$str = <<<EOF
 	<div id="wrapper">
     	<!-- Sidebar -->
@@ -308,7 +309,8 @@ function pagina_c (){
       		<!-- Sidebar - Brand -->
       		<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         		<div class="sidebar-brand-icon">
-					<img src="../img/iconoc.png" alt="" style="width:100px;height:55px">
+					
+					<img src="{$_SESSION['ruta_imagen']}" alt="" style="width:58px;height:58px">
         		</div>	
      		</a>
 
@@ -317,7 +319,7 @@ function pagina_c (){
 
       		<!-- Nav Item - Dashboard -->
       		<li class="nav-item active">
-        		<a class="nav-link" href="../view/index.php">
+        		<a class="nav-link" href="../view/lenguaje.php">
           		<i class="fas fa-undo-alt"></i>
           		<span>Inicio</span></a>
       		</li>
@@ -332,23 +334,25 @@ function pagina_c (){
 
 			<!-- Nav Item - Pages Collapse Menu -->
       		<li class="nav-item">
-        		<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+				<a class="nav-link collapsed" href="../view/tutoriales.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
 					<i class="fas fa-book-open"></i>
 					<span>Tutoriales</span>
 				</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="buttons.html">Buttons</a>
-							<a class="collapse-item" href="cards.html">Cards</a>
-					</div>
-				</div>
 			</li>
 
 			<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item">
-				<a class="nav-link collapsed" href="../view/c_ejercicios.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+				<a class="nav-link collapsed" href="../view/ejercicios.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
 					<i class="fab fa-accessible-icon"></i>
 					<span>Ejercicios</span>
+				</a>
+			</li>
+			
+			<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item">
+				<a class="nav-link collapsed" href="../view/soluciones.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+					<i class="fab fa-accessible-icon"></i>
+					<span>Soluciones</span>
 				</a>
 			</li>
 		</ul>
@@ -362,7 +366,7 @@ function pagina_c (){
 							<div id="encabezado" class="hoc clear">
 								<div class="fl_right">
 									<ul class="nospace">
-										<li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
+										<li><a href="../view/index.php"><i class="fa fa-lg fa-home"></i></a></li>
 										<li><a class="dropdown-toggle" data-toggle="modal" href="#"><span class="glyphicon glyphicon-user"></span> {$_SESSION['username']} </a>
 										<li><a href="../lib/logout.php"><span class="glyphicon glyphicon-log-in"></span> Cerrar</a></li>
 									</ul>
@@ -374,7 +378,17 @@ function pagina_c (){
 
 				<div class="container-fluid">
 					<div class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Lenguaje de Programación C</h1>
+						<h1 class="h3 mb-0 text-gray-800">Lenguaje de Programación {$_SESSION['nombre_lenguaje']}</h1>
+					</div>
+					
+					<div class="row">
+						<div class="col-xl-8 col-lg-7">
+							<div class="card shadow mb-4">
+								<div class="card-body">
+									<div id="grafico" style="height: 300px; width: 100%;"></div>				  
+								</div>
+							</div>
+						</div>
 					</div>
 					<div class="row">
 						<div class="col-xl-8 col-lg-7">
@@ -482,7 +496,7 @@ EOF;
 echo $str;
 }
 
-function c_ejercicios(){
+function ejercicios(){
 	$str = <<<EOF
 	<div id="wrapper">
     	<!-- Sidebar -->
@@ -491,7 +505,7 @@ function c_ejercicios(){
       		<!-- Sidebar - Brand -->
       		<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         		<div class="sidebar-brand-icon">
-					<img src="../img/iconoc.png" alt="" style="width:100px;height:55px">
+					<img src="{$_SESSION['ruta_imagen']}" alt="" style="width:58px;height:58px">
         		</div>	
      		</a>
 
@@ -500,7 +514,7 @@ function c_ejercicios(){
 
       		<!-- Nav Item - Dashboard -->
       		<li class="nav-item active">
-        		<a class="nav-link" href="../view/index.php">
+        		<a class="nav-link" href="../view/lenguaje.php?lenguaje={$_SESSION['lenguaje']}&nombre_lenguaje={$_SESSION['nombre_lenguaje']}&ruta_imagen={$_SESSION['ruta_imagen']}">
           		<i class="fas fa-undo-alt"></i>
           		<span>Inicio</span></a>
       		</li>
@@ -515,23 +529,25 @@ function c_ejercicios(){
 
 			<!-- Nav Item - Pages Collapse Menu -->
       		<li class="nav-item">
-        		<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+				<a class="nav-link collapsed" href="../view/tutoriales.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
 					<i class="fas fa-book-open"></i>
 					<span>Tutoriales</span>
 				</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="buttons.html">Buttons</a>
-							<a class="collapse-item" href="cards.html">Cards</a>
-					</div>
-				</div>
 			</li>
 
 			<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item">
-				<a class="nav-link collapsed" href="../view/c_ejercicios.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+				<a class="nav-link collapsed" href="../view/ejercicios.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
 					<i class="fab fa-accessible-icon"></i>
 					<span>Ejercicios</span>
+				</a>
+			</li>
+			
+			<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item">
+				<a class="nav-link collapsed" href="../view/soluciones.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+					<i class="fab fa-accessible-icon"></i>
+					<span>Soluciones</span>
 				</a>
 			</li>
 		</ul>
@@ -545,7 +561,7 @@ function c_ejercicios(){
 							<div id="encabezado" class="hoc clear">
 								<div class="fl_right">
 									<ul class="nospace">
-										<li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
+										<li><a href="../view/index.php"><i class="fa fa-lg fa-home"></i></a></li>
 										<li><a class="dropdown-toggle" data-toggle="modal" href="#"><span class="glyphicon glyphicon-user"></span> {$_SESSION['username']} </a>
 										<li><a href="../lib/logout.php"><span class="glyphicon glyphicon-log-in"></span> Cerrar</a></li>
 									</ul>
@@ -557,19 +573,220 @@ function c_ejercicios(){
 
 				<div class="container-fluid">
 					<div class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Lenguaje de Programación C</h1>
+						<h1 class="h3 mb-0 text-gray-800">Lenguaje de Programación {$_SESSION['nombre_lenguaje']}</h1>
 					</div>
 					<div class="row">
 						<div class="container-fluid">
-							<h1 class="h3 mb-2 text-gray-800">Tables</h1>
-          					<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
 							<div class="card shadow mb-4">
             					<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+									<h6 class="m-0 font-weight-bold text-primary">Repositorio de Ejercicicios</h6>
             					</div>
 								<div class="card-body">
 									<div class="table-responsive">
 										<table id="tabla-ejercicios" class="table table-bordered" id="dataTable" width="100%" cellspacing="0"></table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+EOF;
+echo $str;
+}
+
+function tutoriales(){
+	$str = <<<EOF
+	<div id="wrapper">
+    	<!-- Sidebar -->
+		<ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion"  id="accordionSidebar">
+		
+      		<!-- Sidebar - Brand -->
+      		<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        		<div class="sidebar-brand-icon">
+					<img src="{$_SESSION['ruta_imagen']}" alt="" style="width:58px;height:58px">
+        		</div>	
+     		</a>
+
+      		<!-- Divider -->
+      		<hr class="sidebar-divider my-1">
+
+      		<!-- Nav Item - Dashboard -->
+      		<li class="nav-item active">
+        		<a class="nav-link" href="../view/lenguaje.php?lenguaje={$_SESSION['lenguaje']}&nombre_lenguaje={$_SESSION['nombre_lenguaje']}&ruta_imagen={$_SESSION['ruta_imagen']}">
+          		<i class="fas fa-undo-alt"></i>
+          		<span>Inicio</span></a>
+      		</li>
+
+			<!-- Divider -->
+      		<hr class="sidebar-divider">
+
+      		<!-- Heading -->
+      		<div class="sidebar-heading">
+        		Opciones
+      		</div>
+
+			<!-- Nav Item - Pages Collapse Menu -->
+      		<li class="nav-item">
+				<a class="nav-link collapsed" href="../view/tutoriales.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+					<i class="fas fa-book-open"></i>
+					<span>Tutoriales</span>
+				</a>
+
+			</li>
+
+			<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item">
+				<a class="nav-link collapsed" href="../view/ejercicios.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+					<i class="fab fa-accessible-icon"></i>
+					<span>Ejercicios</span>
+				</a>
+			</li>
+			
+			<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item">
+				<a class="nav-link collapsed" href="../view/soluciones.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+					<i class="fab fa-accessible-icon"></i>
+					<span>Soluciones</span>
+				</a>
+			</li>
+		</ul>
+
+		<div id="content-wrapper" class="d-flex flex-column">
+			<div id="content">
+				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+					<ul class="navbar-nav ml-auto">
+						<div class="topbar-divider d-none d-sm-block"></div>
+						<li class="nav-item dropdown no-arrow">
+							<div id="encabezado" class="hoc clear">
+								<div class="fl_right">
+									<ul class="nospace">
+										<li><a href="../view/index.php"><i class="fa fa-lg fa-home"></i></a></li>
+										<li><a class="dropdown-toggle" data-toggle="modal" href="#"><span class="glyphicon glyphicon-user"></span> {$_SESSION['username']} </a>
+										<li><a href="../lib/logout.php"><span class="glyphicon glyphicon-log-in"></span> Cerrar</a></li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</nav>
+
+				<div class="container-fluid">
+					<div class="d-sm-flex align-items-center justify-content-between mb-4">
+						<h1 class="h3 mb-0 text-gray-800">Lenguaje de Programación {$_SESSION['nombre_lenguaje']}</h1>
+					</div>
+					<div class="row">
+						<div class="container-fluid">
+							<div class="card shadow mb-4">
+            					<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Repositorio de Tutoriales</h6>
+            					</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table id="tabla-tutoriales" class="table table-bordered" id="dataTable" width="100%" cellspacing="0"></table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+EOF;
+echo $str;
+}
+
+function soluciones(){
+	$str = <<<EOF
+	<div id="wrapper">
+    	<!-- Sidebar -->
+		<ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion"  id="accordionSidebar">
+		
+      		<!-- Sidebar - Brand -->
+      		<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        		<div class="sidebar-brand-icon">
+					<img src="{$_SESSION['ruta_imagen']}" alt="" style="width:58px;height:58px">
+        		</div>	
+     		</a>
+
+      		<!-- Divider -->
+      		<hr class="sidebar-divider my-1">
+
+      		<!-- Nav Item - Dashboard -->
+      		<li class="nav-item active">
+        		<a class="nav-link" href="../view/lenguaje.php?lenguaje={$_SESSION['lenguaje']}&nombre_lenguaje={$_SESSION['nombre_lenguaje']}&ruta_imagen={$_SESSION['ruta_imagen']}">
+          		<i class="fas fa-undo-alt"></i>
+          		<span>Inicio</span></a>
+      		</li>
+
+			<!-- Divider -->
+      		<hr class="sidebar-divider">
+
+      		<!-- Heading -->
+      		<div class="sidebar-heading">
+        		Opciones
+      		</div>
+
+			<!-- Nav Item - Pages Collapse Menu -->
+      		<li class="nav-item">
+				<a class="nav-link collapsed" href="../view/tutoriales.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+					<i class="fas fa-book-open"></i>
+					<span>Tutoriales</span>
+				</a>
+
+			</li>
+
+			<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item">
+				<a class="nav-link collapsed" href="../view/ejercicios.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+					<i class="fab fa-accessible-icon"></i>
+					<span>Ejercicios</span>
+				</a>
+			</li>
+			
+			<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item">
+				<a class="nav-link collapsed" href="../view/soluciones.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+					<i class="fab fa-accessible-icon"></i>
+					<span>Soluciones</span>
+				</a>
+			</li>
+		</ul>
+
+		<div id="content-wrapper" class="d-flex flex-column">
+			<div id="content">
+				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+					<ul class="navbar-nav ml-auto">
+						<div class="topbar-divider d-none d-sm-block"></div>
+						<li class="nav-item dropdown no-arrow">
+							<div id="encabezado" class="hoc clear">
+								<div class="fl_right">
+									<ul class="nospace">
+										<li><a href="../view/index.php"><i class="fa fa-lg fa-home"></i></a></li>
+										<li><a class="dropdown-toggle" data-toggle="modal" href="#"><span class="glyphicon glyphicon-user"></span> {$_SESSION['username']} </a>
+										<li><a href="../lib/logout.php"><span class="glyphicon glyphicon-log-in"></span> Cerrar</a></li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</nav>
+				<div class="container-fluid">
+					<div class="d-sm-flex align-items-center justify-content-between mb-4">
+						<h1 class="h3 mb-0 text-gray-800">Lenguaje de Programación {$_SESSION['nombre_lenguaje']}</h1>
+					</div>
+					<div class="row">
+						<div class="container-fluid">
+							<div class="card shadow mb-4">
+            					<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Repositorio de respuestas</h6>
+            					</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table id="tabla-soluciones" class="table table-bordered" id="dataTable" width="100%" cellspacing="0"></table>
 									</div>
 								</div>
 							</div>
@@ -613,6 +830,7 @@ echo $str;
 
 function footer_paginas(){
 	$str = <<<EOF
+	<script src="../pdf/jquery-3.3.1.slim.min.js"></script>
 	<script src="../extras/sweetalert2/sweetalert2.min.js"></script>
 	<script src="../vendor/jquery/jquery.min.js"></script>
 	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -621,10 +839,23 @@ function footer_paginas(){
 	<script src="../vendor/datatables/jquery.dataTables.min.js"></script>
 	<script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 	<script src="../js/demo/datatables-demo.js"></script>
-	<script src="../controller/tabla_ejercicio.js"></script>
+	
+
+	
+	
+	
+	<script src="../pdf/dataTables.buttons.min.js"></script>
+	<script src="../pdf/jszip.min.js"></script>
+	<script src="../pdf/pdfmake.min.js"></script>
+	<script src="../pdf/vfs_fonts.js"></script>
+	<script src="../pdf/buttons.html5.min.js"></script>
+	
+	
+
 EOF;
 echo $str;
 }
+
 
 
 ?>

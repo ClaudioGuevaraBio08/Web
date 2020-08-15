@@ -9,6 +9,7 @@ $msg = "Error de usuario o clave";
 $location = "../lib/logout.php";
 $_SESSION['loggedinMIAPP'] = false;
 $_SESSION['last_activity'] = 0;
+
 $conn = conectarBD();
 if ($conn) {
 	if (isset($_POST['username'], $_POST['pwd'])) {

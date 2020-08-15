@@ -37,7 +37,7 @@ function insertar ($conn) {
   $dificultad = $_REQUEST['lista_dificultad'];
   $correo = $_SESSION['correo'];
   $fecha = date_create();
-  $str = "../ejercicios/". $correo. "_". $nombre . "_". date_timestamp_get($fecha). ".txt";
+  $str = "../archivos/ejercicios/". $correo. "_". $nombre . "_". date_timestamp_get($fecha). ".txt";
   $ar = fopen($str, "a");
   fwrite($ar, $enunciado);
   fclose($ar);

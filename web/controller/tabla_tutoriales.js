@@ -1,20 +1,20 @@
-// Shorthand for $( document ).ready()
 $(function() {  
-	obtenerEjercicios();
+	obtenerTutoriales();
 });
 
 
-function obtenerEjercicios(){
+function obtenerTutoriales(){
 	var accion_agregar = "<button type='button' class='btn btn-success btn-xs' " +
                        "onclick='agregar();' title='Agregar'>" + 
                        "<i class='fas fa-plus'></i></button>";
     
-	var table = $('#tabla-ejercicios').dataTable({
+	var table = $('#tabla-tutoriales').dataTable({
 		"columnDefs": [
-      {"title": "N° Actividad", "targets": 0, "orderable": false, "className": "dt-body-center", "visible": true},
+      {"title": "N° Tutorial", "targets": 0, "orderable": false, "className": "dt-body-center", "visible": true},
       {"title": "Titulo", "targets": 1, "orderable": true, "className": "dt-body-center"},
-      {"title": "Dificultad", "targets": 2, "orderable": true, "className": "dt-body-center"},
-      {"title": accion_agregar, "targets": 3, "orderable": false, "className": "dt-nowrap dt-right"},
+      {"title": "Instrucciones", "targets": 2, "orderable": true, "className": "dt-body-center"},
+      {"title": "Link", "targets": 3, "orderable": true, "className": "dt-body-center"},
+      {"title": accion_agregar, "targets": 4, "orderable": false, "className": "dt-nowrap dt-right"},
     ],
     dom: 'Bfrtip',
         buttons: [
@@ -43,7 +43,7 @@ function obtenerEjercicios(){
 	table.fnClearTable();
 	
 	$.ajax({
-    url: '../lib/tabla_ejercicios.php',
+    url: '../lib/tabla_tutoriales.php',
     data: {accion: 1},
     type: 'POST',
     dataType: 'json',
@@ -54,13 +54,16 @@ function obtenerEjercicios(){
         
         for(var i = 0; i < data.length; i++) {
           table.fnAddData([
-            data[i]["id_actividad"],
-            data[i]["nombre"],
-            data[i]["dificultad"],
-            "<button type='button' class='btn btn-warning btn-xs' onclick='editar(" + data[i]["id_actividad"] + ");' title='Editar'>"+
+            data[i]["id_tutorial"],
+            data[i]["nombre_tutorial"],
+            data[i]["instrucciones"],
+            data[i]["link_video"],
+            "<button type='button' class='btn btn-warning btn-xs' onclick='editar(" + data[i]["id_tutorial"] + ");' title='Editar'>"+
             "<i class='fas fa-edit'></i></button>&nbsp;" +
-            "<button type='button' class='btn btn-danger btn-xs' onclick='eliminar(" + data[i]["id_actividad"] + ");' title='Eliminar'>"+
-            "<i class='fas fa-trash'></i></button>" 
+            "<button type='button' class='btn btn-danger btn-xs' onclick='eliminar(" + data[i]["id_tutorial"] + ");' title='Eliminar'>"+
+            "<i class='fas fa-trash'></i></button>" +
+            "<button type='button' class='btn btn-info btn-xs' onclick='mostrar(" + data[i]["instrucciones"] + ");' title='Mostrar Instrucciones'>"+
+            "<i class='fas fa-trash'></i></button>"
           ]);
         }
       } else {
@@ -72,13 +75,16 @@ function obtenerEjercicios(){
   })
 }
 
+function mostrar(id_tutorial){
+	swal(id_tutorial);
+}
 
 /* levanta el modal para ingresar datos */
 function agregar() {
-  $("#titulo-modal-ejercicio").html("Ejercicio");
-  document.getElementById("ejercicio_form").reset();
-  $("#agregar_ejercicio").attr("onClick", "agregarBD()");
-  $("#modal_ejercicios_popup").modal("show");
+  $("#titulo-modal-tutorial").html("Tutorial");
+  document.getElementById("tutorial_form").reset();
+  $("#agregar_tutorial").attr("onClick", "agregarBD()");
+  $("#modal_tutoriales_popup").modal("show");
 }
 
 /* agrega un registro a la base de datos */
@@ -87,18 +93,18 @@ function agregarBD() {
   if (val == false) return false;
   
   /* convierte el formulario en un string de parámetros */
-  var form = $("#ejercicio_form").serialize();
+  var form = $("#tutorial_form").serialize();
   
   
   $.ajax({
     dataType: 'json',
     async: true,
-    url: '../lib/tabla_ejercicios.php?accion=2',
+    url: '../lib/tabla_tutoriales.php?accion=2',
     data: form,
     success: function (response) {    
       if (response.success) {          
-        $("#modal_ejercicios_popup").modal("hide");
-        obtenerEjercicios();
+        $("#modal_tutoriales_popup").modal("hide");
+        obtenerTutoriales();
           
       } else {
         swal('Error', response.msg[2], 'error');
@@ -110,10 +116,10 @@ function agregarBD() {
 }
 
 /* obtiene datos de una especialidad y los muestra en el modal */
-function editar(id_actividad) {
-  document.getElementById("ejercicio_form").reset();
+function editar(id_tutorial) {
+  document.getElementById("tutorial_form").reset();
 
-  $.post("../lib/tabla_ejercicios.php?accion=3", {id_actividad: id_actividad}, function(response) {    
+  $.post("../lib/tabla_tutoriales.php?accion=3", {id_tutorial: id_tutorial}, function(response) {    
     if (response.success) {
       $.each(response.data, function(index, value) {
         if ($("input[name="+index+"]").length && value) {
@@ -123,9 +129,9 @@ function editar(id_actividad) {
         }
       });
     
-      $("#titulo-modal-ejercicio").html("Editar");
-      $("#agregar_ejercicio").attr("onClick", "editarBD(" + id_actividad + ")");
-      $("#modal_ejercicios_popup").modal("show");
+      $("#titulo-modal-tutorial").html("Editar Tutorial");
+      $("#agregar_tutorial").attr("onClick", "editarBD(" + id_tutorial + ")");
+      $("#modal_tutoriales_popup").modal("show");
     } else {
       swal('Error', response.msg[2], 'error');
     }
@@ -133,17 +139,17 @@ function editar(id_actividad) {
 }
 
 /* actualiza los datos en la base de datos */
-function editarBD(id_actividad) {
+function editarBD(id_tutorial) {
   val = validarFormularioEspecialista();
   
   if (val == false) return false;
   
-  var form = $("#ejercicio_form").serialize();
-  $.post("../lib/tabla_ejercicios.php?accion=4&id_actividad=" + id_actividad, form, function(response) {
+  var form = $("#tutorial_form").serialize();
+  $.post("../lib/tabla_tutoriales.php?accion=4&id_tutorial=" + id_tutorial, form, function(response) {
   
     if (response.success) {
-      $("#modal_ejercicios_popup").modal("hide");
-      obtenerEjercicios();
+      $("#modal_tutoriales_popup").modal("hide");
+      obtenerTutoriales();
     } else {
       swal('Error', response.msg[2], 'error');
     }
@@ -151,7 +157,7 @@ function editarBD(id_actividad) {
 }
 
 /* elimina un registro de la base de datos */
-function eliminar(id_actividad) {
+function eliminar(id_tutorial) {
   swal({
     title: '¿Está seguro (a)?',
     text: "Esta operación no se puede revertir!",
@@ -161,11 +167,11 @@ function eliminar(id_actividad) {
     $.ajax({
       dataType: 'json',
       async: true,
-      url: '../lib/tabla_ejercicios.php',
-      data: {accion: 5, id_actividad: id_actividad},
+      url: '../lib/tabla_tutoriales.php',
+      data: {accion: 5, id_tutorial: id_tutorial},
       success: function (response) {    
         if (response.success) {          
-          obtenerEjercicios();
+          obtenerTutoriales();
         } else {
           swal('Error', response.msg[2], 'error');
         }
@@ -178,10 +184,11 @@ function eliminar(id_actividad) {
 
 /* valida que los datos obligatorios tengan algún valor */
 function validarFormularioEspecialista () {
-  if ($('#nombre').val().trim().length<1) {
+  if ($('#nombre_tutorial').val().trim().length<1) {
     swal('Atención', "El Nombre es requerido", 'info');
     return false;
   }
   
   return true;
 }
+
