@@ -129,10 +129,16 @@ function select_instrucciones ($conn) {
   $stmt->bindValue(':id_tutorial', $id_tutorial);  
     
   $res = ejecutarSQL($stmt);  
+  $texto = fopen($res["data"][0]["instrucciones"],"r");
+  while(!feof($texto)){
+    $linea = $linea . fgets($texto) . "<br>";
+  }
+  fclose($texto);
+	
   
   
   
-  echo json_encode(array("success"=>$res["success"], "msg"=>$res["msg"], "data"=>$res["data"][0]));
+  echo json_encode(array("success"=>$res["success"], "msg"=>$res["msg"], "data"=>$res["data"][0], "texto"=>$linea));
 }
 
 ?>

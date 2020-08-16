@@ -60,7 +60,11 @@ function obtenerEjercicios(){
             "<button type='button' class='btn btn-warning btn-xs' onclick='editar(" + data[i]["id_actividad"] + ");' title='Editar'>"+
             "<i class='fas fa-edit'></i></button>&nbsp;" +
             "<button type='button' class='btn btn-danger btn-xs' onclick='eliminar(" + data[i]["id_actividad"] + ");' title='Eliminar'>"+
-            "<i class='fas fa-trash'></i></button>" 
+            "<i class='fas fa-trash'></i></button>" +
+            "<button type='button' class='btn btn-info btn-xs' onclick='mostrar(" + data[i]["id_actividad"] + ");' title='Instrucciones'>"+
+            "<i class='fas fa-eye'></i></button>" +
+            "<button type='button' class='btn btn-primary btn-xs' onclick='mostrar_solucion(" + data[i]["id_actividad"] + ");' title='Solucion'>"+
+            "<i class='fas fa-reply'></i>"
           ]);
         }
       } else {
@@ -70,6 +74,40 @@ function obtenerEjercicios(){
       swal('Error', textStatus + " " + errorThrown, 'error');
     }
   })
+}
+
+function mostrar_solucion(id_actividad){
+	$.post("../lib/tabla_ejercicios.php?accion=7", {id_actividad: id_actividad}, function(response) {    
+    if (response.success) {
+      $.each(response.data, function(index, value) {
+      });
+      
+	  document.getElementById("titulo-modal-soluciones").innerHTML = response.data['nombre'];
+      document.getElementById("soluciones_texto").innerHTML = response.texto;
+      $("#modal_soluciones_popup").modal("show");
+    } else {
+      swal('Error', response.msg[2], 'error');
+    }
+  }, 'json');
+	
+	
+}
+
+function mostrar(id_actividad){
+	$.post("../lib/tabla_ejercicios.php?accion=6", {id_actividad: id_actividad}, function(response) {    
+    if (response.success) {
+      $.each(response.data, function(index, value) {
+      });
+      
+	  document.getElementById("titulo-modal-instrucciones").innerHTML = response.data['nombre'];
+      document.getElementById("instrucciones_texto").innerHTML = response.texto;
+      $("#modal_instrucciones_popup").modal("show");
+    } else {
+      swal('Error', response.msg[2], 'error');
+    }
+  }, 'json');
+	
+	
 }
 
 

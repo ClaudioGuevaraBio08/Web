@@ -28,6 +28,16 @@ if (isset($_REQUEST['accion'])) {
       $conn = conectarBD();
       eliminar ($conn);
       break;
+    case 6:
+      # delete where = ?
+      $conn = conectarBD();
+      select_instrucciones ($conn);
+      break;
+    case 7:
+      # delete where = ?
+      $conn = conectarBD();
+      mostrar_solucion ($conn);
+      break;
   }  
 }
 
@@ -104,6 +114,42 @@ function eliminar ($conn) {
     
   $res = ejecutarSQL($stmt);  
   echo json_encode(array("success"=>$res["success"], "msg"=>$res["msg"], "data"=>$res["data"]));
+}
+
+
+function select_instrucciones ($conn) {
+  $id_actividad = $_REQUEST['id_actividad'];
+  $sql= "select nombre, enunciado from actividad where id_actividad = :id_actividad;";
+  $stmt = $conn->prepare($sql);
+  $stmt->bindValue(':id_actividad', $id_actividad);  
+    
+  $res = ejecutarSQL($stmt);  
+  $texto = fopen($res["data"][0]["enunciado"],"r");
+  while(!feof($texto)){
+	$linea = $linea . fgets($texto) . "<br>";
+  }
+  fclose($texto);
+	
+  echo json_encode(array("success"=>$res["success"], "msg"=>$res["msg"], "data"=>$res["data"][0], "texto"=>$linea));
+}
+
+function mostrar_solucion ($conn) {
+  $id_actividad = $_REQUEST['id_actividad'];
+  $lenguaje = $_SESSION['lenguaje'];
+  $sql= "select actividad.nombre, solucion.solucion as solucion from actividad join solucion on solucion.id_actividad = actividad.id_actividad where actividad.id_actividad = :id_actividad and solucion.id_lenguaje = :lenguaje;";
+  $stmt = $conn->prepare($sql);
+  $stmt->bindValue(':id_actividad', $id_actividad); 
+  $stmt->bindValue(':lenguaje', $lenguaje); 
+    
+  $res = ejecutarSQL($stmt);  
+  $texto = fopen($res["data"][0]["solucion"],"r");
+  while(!feof($texto)){
+	$linea = $linea . fgets($texto) . "<br>";
+  }
+  fclose($texto);
+	
+  echo json_encode(array("success"=>$res["success"], "msg"=>$res["msg"], "data"=>$res["data"][0], "texto"=>$linea));
+
 }
 
 ?>

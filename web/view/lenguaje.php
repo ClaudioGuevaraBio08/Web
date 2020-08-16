@@ -29,9 +29,7 @@ pagina_lenguaje();
 <?php footer_paginas(); ?>
 <script src="../controller/index.js"></script>
 
-<script src="../vendor/chart.js/Chart.min.js"></script>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-<script src="../controller/grafico.js"></script>
+
 
 </body>
 </html>
