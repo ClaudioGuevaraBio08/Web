@@ -62,8 +62,8 @@ function obtenerTutoriales(){
             "<i class='fas fa-edit'></i></button>&nbsp;" +
             "<button type='button' class='btn btn-danger btn-xs' onclick='eliminar(" + data[i]["id_tutorial"] + ");' title='Eliminar'>"+
             "<i class='fas fa-trash'></i></button>" +
-            "<button type='button' class='btn btn-info btn-xs' onclick='mostrar(" + data[i]["instrucciones"] + ");' title='Mostrar Instrucciones'>"+
-            "<i class='fas fa-trash'></i></button>"
+            "<button type='button' class='btn btn-info btn-xs' onclick='mostrar(" + data[i]["id_tutorial"] + ");' title='Instrucciones'>"+
+            "<i class='fas fa-eye'></i></button>"
           ]);
         }
       } else {
@@ -76,7 +76,22 @@ function obtenerTutoriales(){
 }
 
 function mostrar(id_tutorial){
-	swal(id_tutorial);
+	$.post("../lib/tabla_tutoriales.php?accion=6", {id_tutorial: id_tutorial}, function(response) {    
+    if (response.success) {
+      $.each(response.data, function(index, value) {
+      });
+      
+      var ins = response.data['instrucciones'];
+      console.log(ins);
+	  document.getElementById("titulo-modal-instrucciones").innerHTML = response.data['nombre_tutorial'];
+      document.getElementById("instrucciones_texto").innerHTML = response.data['instrucciones'];
+      $("#modal_instrucciones_popup").modal("show");
+    } else {
+      swal('Error', response.msg[2], 'error');
+    }
+  }, 'json');
+	
+	
 }
 
 /* levanta el modal para ingresar datos */

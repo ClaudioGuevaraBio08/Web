@@ -29,6 +29,11 @@ if (isset($_REQUEST['accion'])) {
       $conn = conectarBD();
       eliminar ($conn);
       break;
+    case 6:
+      # delete where = ?
+      $conn = conectarBD();
+      select_instrucciones ($conn);
+      break;
   }  
 }
 
@@ -47,7 +52,7 @@ function insertar ($conn) {
   $sql= "insert into tutorial (id_lenguaje, nombre_tutorial, instrucciones, link_video) values (:lenguaje, :nombre_tutorial, :instrucciones, :link_video);";
   $stmt = $conn->prepare($sql);
   $stmt->bindValue(':nombre_tutorial', $nombre_tutorial); 
-  $stmt->bindValue(':instrucciones', $instrucciones);
+  $stmt->bindValue(':instrucciones', $str);
   $stmt->bindValue(':link_video', $link_video);
   $stmt->bindValue(':lenguaje', $lenguaje);
   
@@ -115,6 +120,19 @@ function eliminar ($conn) {
     
   $res = ejecutarSQL($stmt);  
   echo json_encode(array("success"=>$res["success"], "msg"=>$res["msg"], "data"=>$res["data"]));
+}
+
+function select_instrucciones ($conn) {
+  $id_tutorial = $_REQUEST['id_tutorial'];
+  $sql= "select nombre_tutorial, instrucciones from tutorial where id_tutorial = :id_tutorial;";
+  $stmt = $conn->prepare($sql);
+  $stmt->bindValue(':id_tutorial', $id_tutorial);  
+    
+  $res = ejecutarSQL($stmt);  
+  
+  
+  
+  echo json_encode(array("success"=>$res["success"], "msg"=>$res["msg"], "data"=>$res["data"][0]));
 }
 
 ?>
