@@ -42,9 +42,15 @@ function insertar ($conn) {
   $actividad = $_REQUEST['lista_actividad'];
   $solucion = $_REQUEST['solucion'];
   
+  $ruta_anterior = "select actividad.nombre as nombre from solucion join actividad on actividad.id_actividad = solucion.id_actividad where actividad.id_actividad = :actividad and solucion.id_lenguaje = :lenguaje;";
+  $stmt = $conn->prepare($ruta_anterior);
+  $stmt->bindValue(':actividad', $actividad); 
+  $stmt->bindValue(':lenguaje', $lenguaje);
+  $res = ejecutarSQL($stmt);
+  
   $correo = $_SESSION['correo'];
   $fecha = date_create();
-  $str = "../archivos/soluciones/". $correo. "_". $actividad . "_". date_timestamp_get($fecha). ".txt";
+  $str = "../archivos/soluciones/". $correo. "_". $res["data"]["0"]["nombre"] . "_". date_timestamp_get($fecha). ".txt";
   $ar = fopen($str, "a");
   fwrite($ar, $solucion);
   fclose($ar);
@@ -61,7 +67,7 @@ function insertar ($conn) {
 
 function seleccionar ($conn) {
   $lenguaje = $_SESSION['lenguaje'];
-  $sql= "select lenguaje.nombre as nombre_lenguaje, solucion.id_actividad, solucion.solucion from solucion join lenguaje on lenguaje.id_lenguaje = solucion.id_lenguaje where solucion.id_lenguaje = :lenguaje order by solucion.id_lenguaje;";
+  $sql= "select actividad.nombre as nombre_actividad, solucion.id_actividad from solucion join actividad on actividad.id_actividad = solucion.id_actividad where solucion.id_lenguaje = :lenguaje order by solucion.id_lenguaje;";
   $stmt = $conn->prepare($sql);
   $stmt->bindValue(':lenguaje', $lenguaje);
     
@@ -74,23 +80,27 @@ function actualizar ($conn) {
   $lenguaje = $_SESSION['lenguaje'];
   $solucion = $_REQUEST['solucionupdate'];
   
-  #$id_actividad = $_REQUEST['id_actividad'];
-  #$nombre = $_REQUEST['nombre'];
-  #$dificultad = $_REQUEST['lista_dificultad'];
-  #$enunciado = $_REQUEST['enunciado'];
-  #$correo = $_SESSION['correo'];
-  #$fecha = date_create();
-  #$str = "../ejercicios/". $correo. "_". $nombre. "_". date_timestamp_get($fecha). ".txt";
-  #$ar = fopen($str, "a");
-  #fwrite($ar, $enunciado);
-  #fclose($ar);
+  $ruta_anterior = "select solucion.solucion as solucion, actividad.nombre as nombre from solucion join actividad on actividad.id_actividad = solucion.id_actividad where actividad.id_actividad = :actividad and solucion.id_lenguaje = :lenguaje;";
+  $stmt = $conn->prepare($ruta_anterior);
+  $stmt->bindValue(':actividad', $actividad); 
+  $stmt->bindValue(':lenguaje', $lenguaje);
+  $res = ejecutarSQL($stmt); 
+  
+  unlink($res["data"][0]["solucion"]);
+  
+  $correo = $_SESSION['correo'];
+  $fecha = date_create();
+  $str = "../archivos/soluciones/". $correo. "_". $res["data"][0]["nombre"]. "_". date_timestamp_get($fecha). ".txt";
+  $ar = fopen($str, "a");
+  fwrite($ar, $solucion);
+  fclose($ar);
   
   $sql= "update solucion set solucion = :solucion where id_actividad = :actividad and id_lenguaje = :lenguaje;";
   
   $stmt = $conn->prepare($sql);
   $stmt->bindValue(':actividad', $actividad); 
   $stmt->bindValue(':lenguaje', $lenguaje);  
-  $stmt->bindValue(':solucion', $solucion);
+  $stmt->bindValue(':solucion', $str);
     
   $res = ejecutarSQL($stmt);  
   echo json_encode(array("success"=>$res["success"], "msg"=>$res["msg"], "data"=>$res["data"][0]));

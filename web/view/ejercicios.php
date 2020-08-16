@@ -14,6 +14,7 @@ head_lenguajes();
 <body>
 <?php 
 sidebar();
+opcion_soluciones();
 navbar_lenguaje();
 ejercicios();
 ?>
@@ -99,7 +100,6 @@ ejercicios();
 					<div class="modal-body">
 						<div id="login_msg">
 							<div id="info_login_msg" class="glyphicon glyphicon-chevron-right"></div>
-							<span id="text_login_msg">Solucion</span>
 							<p></p>
 							<p id="soluciones_texto" name="soluciones_texto"></p>
 						</div>

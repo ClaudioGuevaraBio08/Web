@@ -130,7 +130,7 @@ function navbar (){
 		<div id="encabezado" class="hoc clear">
 			<div class="fl_right">
 				<ul class="nospace">
-					<li><a href="index.php"><i class="fa fa-lg fa-home"></i></a></li>
+					<li><a href=""><i class="fa fa-lg fa-home"></i></a></li>
 					<li><a class="dropdown-toggle" data-toggle="modal" href="#"><span class="glyphicon glyphicon-user"></span> {$_SESSION['username']} </a>
 					<li><a href="../lib/logout.php"><span class="glyphicon glyphicon-log-in"></span> Cerrar</a></li>
 				</ul>
@@ -342,6 +342,15 @@ function sidebar (){
 			</li>
 			
 			<!-- Nav Item - Utilities Collapse Menu -->
+			
+EOF;
+
+echo $str;
+}
+
+function opcion_soluciones(){
+	$str_administrador = <<<EOF
+			<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item">
 				<a class="nav-link collapsed" href="../view/soluciones.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
 					<i class="fab fa-accessible-icon"></i>
@@ -349,11 +358,18 @@ function sidebar (){
 				</a>
 			</li>
 		</ul>
-	
 EOF;
-
-echo $str;
+	$str_alumno = <<<EOF
+		</ul>
+EOF;
+if ($_SESSION["tipo_usuario"] == 1){
+	echo $str_administrador;
 }
+if ($_SESSION["tipo_usuario"] == 2){
+	echo $str_alumno;
+}
+}
+
 
 function navbar_lenguaje(){
 	$str = <<<EOF
@@ -519,7 +535,7 @@ if ($_SESSION["tipo_usuario"] == 2){
 }
 
 function tutoriales(){
-	$str = <<<EOF
+	$str_alumno = <<<EOF
 					<div class="row">
 						<div class="container-fluid">
 							<div class="card shadow mb-4">
@@ -528,7 +544,7 @@ function tutoriales(){
             					</div>
 								<div class="card-body">
 									<div class="table-responsive">
-										<table id="tabla-tutoriales" class="table table-bordered" id="dataTable" width="100%" cellspacing="0"></table>
+										<table id="tabla-tutoriales-alumno" class="table table-bordered" id="dataTable" width="100%" cellspacing="0"></table>
 									</div>
 								</div>
 							</div>
@@ -539,7 +555,33 @@ function tutoriales(){
 		</div>
 	</div>
 EOF;
-echo $str;
+	$str_administrador = <<<EOF
+					<div class="row">
+						<div class="container-fluid">
+							<div class="card shadow mb-4">
+            					<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Repositorio de Tutoriales</h6>
+            					</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table id="tabla-tutoriales-administrador" class="table table-bordered" id="dataTable" width="100%" cellspacing="0"></table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+EOF;
+
+if ($_SESSION["tipo_usuario"] == 1){
+	echo $str_administrador;
+}
+if ($_SESSION["tipo_usuario"] == 2){
+	echo $str_alumno;
+}
 }
 
 function soluciones(){
@@ -563,7 +605,9 @@ function soluciones(){
 		</div>
 	</div>
 EOF;
-echo $str;
+if ($_SESSION["tipo_usuario"] == 1){
+	echo $str;
+}
 }
 
 function footer(){

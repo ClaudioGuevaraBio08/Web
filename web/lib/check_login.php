@@ -37,7 +37,7 @@ if ($conn) {
 					//registerActivity($id_per, 'true');
 				} else {
 					//registerActivity($id_per, 'false');
-					$msg = "Usuario no existe.";
+					$msg = "Usuario o contraseña incorrecta";
 					// registerActivity($id_per, 1, null, 'false', null, 'index');
 				}
 			} else {

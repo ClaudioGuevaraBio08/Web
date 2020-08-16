@@ -77,16 +77,20 @@ function actualizar ($conn) {
   $instrucciones = $_REQUEST['instrucciones'];
   $link_video = $_REQUEST['link-video'];
   
-  #$id_actividad = $_REQUEST['id_actividad'];
-  #$nombre = $_REQUEST['nombre'];
-  #$dificultad = $_REQUEST['lista_dificultad'];
-  #$enunciado = $_REQUEST['enunciado'];
-  #$correo = $_SESSION['correo'];
-  #$fecha = date_create();
-  #$str = "../ejercicios/". $correo. "_". $nombre. "_". date_timestamp_get($fecha). ".txt";
-  #$ar = fopen($str, "a");
-  #write($ar, $enunciado);
-  #fclose($ar);
+  $ruta_anterior = "select instrucciones from tutorial where id_tutorial = :id_tutorial;";
+  $stmt = $conn->prepare($ruta_anterior);
+  $stmt->bindValue(':id_tutorial', $id_tutorial); 
+  $res = ejecutarSQL($stmt); 
+  
+  unlink($res["data"][0]["instrucciones"]);
+  
+  $correo = $_SESSION['correo'];
+  $fecha = date_create();
+  $str = "../archivos/tutoriales/". $correo. "_". $nombre_tutorial . "_". date_timestamp_get($fecha). ".txt";
+  $ar = fopen($str, "a");
+  write($ar, $instrucciones);
+  fclose($ar);
+  
   $sql= "update tutorial set nombre_tutorial = :nombre_tutorial, instrucciones = :instrucciones, link_video = :link_video where id_tutorial = :id_tutorial;";
   
   $stmt = $conn->prepare($sql);
@@ -134,8 +138,6 @@ function select_instrucciones ($conn) {
     $linea = $linea . fgets($texto) . "<br>";
   }
   fclose($texto);
-	
-  
   
   
   echo json_encode(array("success"=>$res["success"], "msg"=>$res["msg"], "data"=>$res["data"][0], "texto"=>$linea));

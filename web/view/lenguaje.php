@@ -24,6 +24,7 @@ head_lenguajes();
 <body>
 <?php 
 sidebar();
+opcion_soluciones();
 navbar_lenguaje();
 pagina_lenguaje();
 ?>
