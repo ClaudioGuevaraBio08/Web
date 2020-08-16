@@ -216,6 +216,7 @@ EOF;
 echo $str;
 }
 
+
 function main_pagina_out(){
 	$str = <<<EOF
 	<main>
@@ -319,7 +320,7 @@ function sidebar (){
 
       		<!-- Nav Item - Dashboard -->
       		<li class="nav-item active">
-        		<a class="nav-link" href="../view/lenguaje.php">
+        		<a class="nav-link" href="../view/lenguaje.php?lenguaje={$_SESSION['lenguaje']}&nombre_lenguaje={$_SESSION['nombre_lenguaje']}&ruta_imagen={$_SESSION['ruta_imagen']}">
           		<i class="fas fa-undo-alt"></i>
           		<span>Inicio</span></a>
       		</li>
@@ -467,8 +468,7 @@ function pagina_lenguaje (){
 								</div>
 							</div>
 						</div>
-					</div>
-					
+					</div>		
 				</div>
 			</div>
 		</div>
@@ -478,16 +478,16 @@ echo $str;
 }
 
 function ejercicios(){
-	$str = <<<EOF
+	$str_alumno = <<<EOF
 					<div class="row">
 						<div class="container-fluid">
 							<div class="card shadow mb-4">
             					<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">Repositorio de Ejercicicios</h6>
+									<h6 class="m-0 font-weight-bold text-primary">Repositorio de Ejerciciciosxdd</h6>
             					</div>
 								<div class="card-body">
 									<div class="table-responsive">
-										<table id="tabla-ejercicios" class="table table-bordered" id="dataTable" width="100%" cellspacing="0"></table>
+										<table id="tabla-ejercicios-alumno" class="table table-bordered" id="dataTable" width="100%" cellspacing="0"></table>
 									</div>
 								</div>
 							</div>
@@ -498,7 +498,32 @@ function ejercicios(){
 		</div>
 	</div>
 EOF;
-echo $str;
+	$str_administrador = <<<EOF
+					<div class="row">
+						<div class="container-fluid">
+							<div class="card shadow mb-4">
+            					<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Repositorio de Ejerciciciosxddxd</h6>
+            					</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table id="tabla-ejercicios-administrador" class="table table-bordered" id="dataTable" width="100%" cellspacing="0"></table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+EOF;
+if ($_SESSION["tipo_usuario"] == 1){
+	echo $str_administrador;
+}
+if ($_SESSION["tipo_usuario"] == 2){
+	echo $str_alumno;
+}
 }
 
 function tutoriales(){

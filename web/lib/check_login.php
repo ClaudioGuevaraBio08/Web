@@ -24,6 +24,7 @@ if ($conn) {
 			if ($stmt->execute()) {
 				$array_session = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 				if (count($array_session) == 1) {
+					$_SESSION['tipo_usuario'] = $array_session[0]["id_tipo"];
 					$_SESSION['username'] = $array_session[0]["nombre"] . " " . $array_session[0]["apellido"];
 					$_SESSION['correo'] = $array_session[0]["correo"];
 					$_SESSION['nivel'] = $array_session[0]["id_nivel"];

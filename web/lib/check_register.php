@@ -24,7 +24,7 @@ if ($conn) {
 					$password = $_POST['pwd'];
 					$confirm_password = $_POST['pwd_confirm'];
 					$encrypted_password = encriptar($password);
-					$sql = "insert into usuario values (:correo, 1, :password, :nombre, :apellido)";
+					$sql = "insert into usuario values (:correo, 2, :password, :nombre, :apellido)";
 					$stmt = $conn->prepare($sql);
 					$stmt->bindValue(':nombre', $nombre);
 					$stmt->bindValue(':apellido', $apellido);
