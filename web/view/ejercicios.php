@@ -13,6 +13,8 @@ head_lenguajes();
 
 <body>
 <?php 
+sidebar();
+navbar_lenguaje();
 ejercicios();
 ?>
 

@@ -1,15 +1,83 @@
 // Shorthand for $( document ).ready()
 $(function() {  
-	obtenerEjercicios();
+	obtenerEjerciciosAlumno();
+	obtenerEjerciciosAdministrador();
 });
 
 
-function obtenerEjercicios(){
+function obtenerEjerciciosAlumno(){
+	
+    
+	var table = $('#tabla-ejercicios-alumno').dataTable({
+		"columnDefs": [
+      {"title": "N° Actividad", "targets": 0, "orderable": false, "className": "dt-body-center", "visible": true},
+      {"title": "Titulo", "targets": 1, "orderable": true, "className": "dt-body-center"},
+      {"title": "Dificultad", "targets": 2, "orderable": true, "className": "dt-body-center"},
+      {"title": "Opciones", "targets": 3, "orderable": false, "className": "dt-nowrap dt-right"},
+    ],
+    dom: 'Bfrtip',
+        buttons: [
+            'csvHtml5',
+            'pdfHtml5'
+        ],
+    "searching": true,
+    "search": {
+      "regex": true,
+      "smart": true
+    },
+    "scrollX": false,
+    "order": [[1, "asc"]],
+    "bDestroy": true,
+    "deferRender": true,
+    "language": {
+    },
+    "pageLength": 10,
+    "bPaginate": true,
+    "bLengthChange": true,
+    "bFilter": true,
+    "bInfo": true,
+    "bAutoWidth": false
+	});
+	
+	table.fnClearTable();
+	
+	$.ajax({
+    url: '../lib/tabla_ejercicios.php',
+    data: {accion: 1},
+    type: 'POST',
+    dataType: 'json',
+    async: true,
+    success: function(response) {
+      if (response.success) {
+        var data = response.data;
+        
+        for(var i = 0; i < data.length; i++) {
+          table.fnAddData([
+            data[i]["id_actividad"],
+            data[i]["nombre"],
+            data[i]["dificultad"],
+            "<button type='button' class='btn btn-info btn-xs' onclick='mostrar(" + data[i]["id_actividad"] + ");' title='Instrucciones'>"+
+            "<i class='fas fa-eye'></i></button>" +
+            "<button type='button' class='btn btn-primary btn-xs' onclick='mostrar_solucion(" + data[i]["id_actividad"] + ");' title='Solucion'>"+
+            "<i class='fas fa-reply'></i>"
+          ]);
+          console.log(data[i]["id_actividad"]);
+        }
+      } else {
+        swal('Error', response.msg[2], 'error');
+      }      
+    }, error: function(jqXHR, textStatus, errorThrown ) {
+      swal('Error', textStatus + " " + errorThrown, 'error');
+    }
+  })
+}
+
+function obtenerEjerciciosAdministrador(){
 	var accion_agregar = "<button type='button' class='btn btn-success btn-xs' " +
                        "onclick='agregar();' title='Agregar'>" + 
                        "<i class='fas fa-plus'></i></button>";
     
-	var table = $('#tabla-ejercicios').dataTable({
+	var table = $('#tabla-ejercicios-administrador').dataTable({
 		"columnDefs": [
       {"title": "N° Actividad", "targets": 0, "orderable": false, "className": "dt-body-center", "visible": true},
       {"title": "Titulo", "targets": 1, "orderable": true, "className": "dt-body-center"},
@@ -76,8 +144,10 @@ function obtenerEjercicios(){
   })
 }
 
+
 function mostrar_solucion(id_actividad){
 	$.post("../lib/tabla_ejercicios.php?accion=7", {id_actividad: id_actividad}, function(response) {    
+    console.log(response);
     if (response.success) {
       $.each(response.data, function(index, value) {
       });
