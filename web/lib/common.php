@@ -111,23 +111,15 @@ function head_lenguajes (){
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<title>Mi app web</title>
-	
-	
 	<link href="../css/all.min.css" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 	<link href="../css/sb-admin-2.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="../css/estilos.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 	<link href="../css/dataTables.bootstrap4.min.css" rel="stylesheet">
-	
 	<link href="../css/jquery.dataTables.min.css" rel="stylesheet">
 	<link href="../css/buttons.dataTables.min.css" rel="stylesheet">
-	
 	<link rel="stylesheet" href="../extras/sweetalert2/sweetalert2.css">
-	
-	
-	
-
 EOF;
 	echo $str;
 }
@@ -138,9 +130,8 @@ function navbar (){
 		<div id="encabezado" class="hoc clear">
 			<div class="fl_right">
 				<ul class="nospace">
-					<li><a href=""><i class="fa fa-lg fa-home"></i></a></li>
-					<li><a class="dropdown-toggle" data-toggle="modal" href="#"><span class="glyphicon glyphicon-user"></span> {$_SESSION['username']} </a>
-					<li><a href="../lib/logout.php"><span class="glyphicon glyphicon-log-in"></span> Cerrar</a></li>
+					<li id = "usuario"><span class="glyphicon glyphicon-user"></span> {$_SESSION['username']} 
+					<li><a href="../lib/logout.php"><span class="glyphicon glyphicon-log-in"></span> Cerrar Sesión</a></li>
 				</ul>
 			</div>
 		</div>
@@ -150,7 +141,6 @@ EOF;
         	<div id="encabezado" class="hoc clear">
                 	<div class="fl_right">
                         	<ul class="nospace">
-                                	<li><a href="../index/index.php"><i class="fa fa-lg fa-home"></i></a></li>
                                 	<li><a href="" data-toggle="modal" data-target="#modal_login_popup"><span class="glyphicon glyphicon-log-in"></span> Iniciar Sesion</a>
                                 	<li><a href="" data-toggle="modal" data-target="#modal_register_popup"><span class="glyphicon glyphicon-log-in"></span> Registrase</a>
                         	</ul>
@@ -248,14 +238,14 @@ function main_pagina_out(){
 				<div class="contenedor-intormacion-personal">
 					<img src="../img/portada2.jpg" alt="" class="imagen-about-us">
 					<div class="contenido-textos">
-						<h3><span>1</span>¿Cuál es el proposito de nuestra página?</h3>
-						<p>Buscamos que los estudiantes desde temprano tengan una referencia sobre que es el programar
-                                          y empiecen a desarrollar habilidades dajskdjaskdjkasjdksajdaskdjaskdjaskdsajdkas
+						<h3><span>1</span>¿Cuál es nuestro propósito?</h3>
+						<p>Buscamos que los estudiantes comiencen a ejercitar sus habilidades de programación desde temprana edad, 
+						con ejercicios escritos y revisados por nuestros administradores
 						</p>
-						<h3><span>2</span>Pregunta 2</h3>
-						<p>asdasdsa</p>
-						<h3><span>3</span>Pregunta 3</h3>
-						<p>asdsadsar</p>
+						<h3><span>2</span>¿Cuánto puedes aprender con nosotros?</h3>
+						<p>El límite sólo se encuentra en cuánto quieras aprender. Los ejercicios, tutoriales y videos siempre estarán disponibles para ti</p>
+						<h3><span>3</span>¿Qué necesitas para mejorar?</h3>
+						<p>Sólo necesitas constancia y ganas de aprender.</p>
 					</div>
 				</div>
 			</div>
@@ -289,31 +279,15 @@ function main_pagina_out(){
 				<div class="galeria-port">
 					<div class="imagen-galeria">
 						<img src="../img/imagen1.png" alt="">
-						<div class="hover-galeria">
-							<img src="../img/icono.png" alt="">
-							<p>Saber más</p>
-						</div>
 					</div>
 					<div class="imagen-galeria">
 						<img src="../img/imagen2.jpg" alt="">
-						<div class="hover-galeria">
-							<img src="../img/icono.png" alt="">
-							<p>Saber más</p>
-						</div>
 					</div>
 					<div class="imagen-galeria">
 						<img src="../img/imagen3.jpg" alt="">
-						<div class="hover-galeria">
-							<img src="../img/icono.png" alt="">
-							<p>Saber más</p>
-						</div>
 					</div>
 					<div class="imagen-galeria">
 						<img src="../img/imagen4.jpg" alt="">
-						<div class="hover-galeria">
-							<img src="../img/icono.png" alt="">
-							<p>Saber más</p>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -341,7 +315,7 @@ function sidebar (){
       		<hr class="sidebar-divider my-1">
 
       		<!-- Nav Item - Dashboard -->
-      		<li class="nav-item active">
+      		<li class="nav-item">
         		<a class="nav-link" href="../view/lenguaje.php?lenguaje={$_SESSION['lenguaje']}&nombre_lenguaje={$_SESSION['nombre_lenguaje']}&ruta_imagen={$_SESSION['ruta_imagen']}">
           		<i class="fas fa-undo-alt"></i>
           		<span>Inicio</span></a>
@@ -416,7 +390,7 @@ function navbar_lenguaje(){
 								<div class="fl_right">
 									<ul class="nospace">
 										<li><a href="../view/index.php"><i class="fa fa-lg fa-home"></i></a></li>
-										<li><a class="dropdown-toggle" data-toggle="modal" href="#"><span class="glyphicon glyphicon-user"></span> {$_SESSION['username']} </a>
+										<li id = "usuario"><span class="glyphicon glyphicon-user"></span> {$_SESSION['username']} </a>
 										<li><a href="../lib/logout.php"><span class="glyphicon glyphicon-log-in"></span> Cerrar</a></li>
 									</ul>
 								</div>

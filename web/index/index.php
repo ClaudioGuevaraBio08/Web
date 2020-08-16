@@ -1,5 +1,8 @@
 <?php
 require_once("../lib/common.php");
+if($_SESSION["loggedinMIAPP"]){
+	header('Location: ../view/');
+}
 ?>
 
 <!DOCTYPE html>
@@ -150,5 +153,4 @@ footer();
 <script src="../controller/login.js"></script>
 <script src="../controller/register.js"></script>
 <script src="../controller/recuperar_clave.js"></script>
-
 </body>
