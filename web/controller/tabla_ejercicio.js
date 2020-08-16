@@ -1,13 +1,8 @@
-// Shorthand for $( document ).ready()
 $(function() {  
 	obtenerEjerciciosAlumno();
 	obtenerEjerciciosAdministrador();
 });
-
-
-function obtenerEjerciciosAlumno(){
-	
-    
+function obtenerEjerciciosAlumno(){    
 	var table = $('#tabla-ejercicios-alumno').dataTable({
 		"columnDefs": [
       {"title": "N° Actividad", "targets": 0, "orderable": false, "className": "dt-body-center", "visible": true},
@@ -37,10 +32,8 @@ function obtenerEjerciciosAlumno(){
     "bFilter": true,
     "bInfo": true,
     "bAutoWidth": false
-	});
-	
+	});	
 	table.fnClearTable();
-	
 	$.ajax({
     url: '../lib/tabla_ejercicios.php',
     data: {accion: 1},
@@ -50,7 +43,6 @@ function obtenerEjerciciosAlumno(){
     success: function(response) {
       if (response.success) {
         var data = response.data;
-        
         for(var i = 0; i < data.length; i++) {
           table.fnAddData([
             data[i]["id_actividad"],
@@ -61,7 +53,6 @@ function obtenerEjerciciosAlumno(){
             "<button type='button' class='btn btn-primary btn-xs' onclick='mostrar_solucion(" + data[i]["id_actividad"] + ");' title='Solucion'>"+
             "<i class='fas fa-reply'></i>"
           ]);
-          console.log(data[i]["id_actividad"]);
         }
       } else {
         swal('Error', response.msg[2], 'error');
@@ -107,9 +98,7 @@ function obtenerEjerciciosAdministrador(){
     "bInfo": true,
     "bAutoWidth": false
 	});
-	
 	table.fnClearTable();
-	
 	$.ajax({
     url: '../lib/tabla_ejercicios.php',
     data: {accion: 1},
@@ -119,7 +108,6 @@ function obtenerEjerciciosAdministrador(){
     success: function(response) {
       if (response.success) {
         var data = response.data;
-        
         for(var i = 0; i < data.length; i++) {
           table.fnAddData([
             data[i]["id_actividad"],
@@ -143,16 +131,12 @@ function obtenerEjerciciosAdministrador(){
     }
   })
 }
-
-
 function mostrar_solucion(id_actividad){
 	$.post("../lib/tabla_ejercicios.php?accion=7", {id_actividad: id_actividad}, function(response) {    
     console.log(response);
     if (response.success) {
       $.each(response.data, function(index, value) {
       });
-      
-      console.log(response.texto);
 	  document.getElementById("titulo-modal-soluciones").innerHTML = response.data['nombre'];
       document.getElementById("soluciones_texto").innerHTML = response.texto;
       $("#modal_soluciones_popup").modal("show");
@@ -160,16 +144,12 @@ function mostrar_solucion(id_actividad){
       swal('Error', response.msg[2], 'error');
     }
   }, 'json');
-	
-	
 }
-
 function mostrar(id_actividad){
 	$.post("../lib/tabla_ejercicios.php?accion=6", {id_actividad: id_actividad}, function(response) {    
     if (response.success) {
       $.each(response.data, function(index, value) {
-      });
-      
+      });     
 	  document.getElementById("titulo-modal-instrucciones").innerHTML = response.data['nombre'];
       document.getElementById("instrucciones_texto").innerHTML = response.texto;
       $("#modal_instrucciones_popup").modal("show");
@@ -177,11 +157,7 @@ function mostrar(id_actividad){
       swal('Error', response.msg[2], 'error');
     }
   }, 'json');
-	
-	
 }
-
-
 /* levanta el modal para ingresar datos */
 function agregar() {
   $("#titulo-modal-ejercicio").html("Ejercicio");
@@ -189,16 +165,12 @@ function agregar() {
   $("#agregar_ejercicio").attr("onClick", "agregarBD()");
   $("#modal_ejercicios_popup").modal("show");
 }
-
 /* agrega un registro a la base de datos */
 function agregarBD() {
   val = validarFormularioEspecialista();
   if (val == false) return false;
-  
   /* convierte el formulario en un string de parámetros */
   var form = $("#ejercicio_form").serialize();
-  
-  
   $.ajax({
     dataType: 'json',
     async: true,
@@ -208,7 +180,6 @@ function agregarBD() {
       if (response.success) {          
         $("#modal_ejercicios_popup").modal("hide");
         obtenerEjercicios();
-          
       } else {
         swal('Error', response.msg[2], 'error');
       }
@@ -218,11 +189,9 @@ function agregarBD() {
   }); 
   window.location.reload();
 }
-
 /* obtiene datos de una especialidad y los muestra en el modal */
 function editar(id_actividad) {
   document.getElementById("ejercicio_form").reset();
-
   $.post("../lib/tabla_ejercicios.php?accion=3", {id_actividad: id_actividad}, function(response) {    
     if (response.success) {
       $.each(response.data, function(index, value) {
@@ -232,7 +201,6 @@ function editar(id_actividad) {
           $("select[name="+index+"]").val(value);
         }
       });
-    
       $("#titulo-modal-ejercicio").html("Editar");
       $("#agregar_ejercicio").attr("onClick", "editarBD(" + id_actividad + ")");
       $("#modal_ejercicios_popup").modal("show");
@@ -241,16 +209,12 @@ function editar(id_actividad) {
     }
   }, 'json');
 }
-
 /* actualiza los datos en la base de datos */
 function editarBD(id_actividad) {
-  val = validarFormularioEspecialista();
-  
+  val = validarFormularioEspecialista(); 
   if (val == false) return false;
-  
   var form = $("#ejercicio_form").serialize();
   $.post("../lib/tabla_ejercicios.php?accion=4&id_actividad=" + id_actividad, form, function(response) {
-  
     if (response.success) {
       $("#modal_ejercicios_popup").modal("hide");
       obtenerEjercicios();
@@ -260,7 +224,6 @@ function editarBD(id_actividad) {
   }, 'json');
   window.location.reload();
 }
-
 /* elimina un registro de la base de datos */
 function eliminar(id_actividad) {
   swal({
@@ -287,13 +250,11 @@ function eliminar(id_actividad) {
     window.location.reload();  
   });
 }
-
 /* valida que los datos obligatorios tengan algún valor */
 function validarFormularioEspecialista () {
   if ($('#nombre').val().trim().length<1) {
     swal('Atención', "El Nombre es requerido", 'info');
     return false;
-  }
-  
+  }  
   return true;
 }

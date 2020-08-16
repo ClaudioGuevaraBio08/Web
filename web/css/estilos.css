@@ -5,7 +5,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+#usuario{
+	color: #4f84ffd0
 
+}
 body {
   font-family: 'open sans';
   
@@ -57,7 +60,7 @@ body {
 /* Portada */ 
 header{
 	width: 100%;
-	height:600px;
+	height:608px;
 	background: -webkit-linear-gradient(to right, hsla(198, 39%, 28%, 0.671), hsla(195, 35%, 19%, 0.671), hsla(198, 44%, 11%, 0.671)), url(../img/portada1.jpg);  
 	background: linear-gradient(to right, hsla(198, 39%, 28%, 0.671), hsla(195, 35%, 19%, 0.671), hsla(198, 44%, 11%, 0.671)), url(../img/portada1.jpg); 
 	background-attachment: fixed;
