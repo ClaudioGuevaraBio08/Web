@@ -58,6 +58,55 @@ ejercicios();
 	</div>
 </div>
 
+<div id="modal_instrucciones_popup" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title"><span id="titulo-modal-instrucciones"></span></h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<!--form-->
+			<div id="div_form_login">
+				<!--login form-->
+				<form id="instrucciones_form"  name="instrucciones_form" class="form-horizontal" role="form" action="" method="POST">
+					<div class="modal-body">
+						<div id="login_msg">
+							<div id="info_login_msg" class="glyphicon glyphicon-chevron-right"></div>
+							<span id="text_login_msg">Instrucciones</span>
+							<p></p>
+							<p id="instrucciones_texto" name="instrucciones_texto"></p>
+						</div>
+					</div>	
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="modal_soluciones_popup" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title"><span id="titulo-modal-soluciones"></span></h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<!--form-->
+			<div id="div_form_login">
+				<!--login form-->
+				<form id="soluciones_form"  name="soluciones_form" class="form-horizontal" role="form" action="" method="POST">
+					<div class="modal-body">
+						<div id="login_msg">
+							<div id="info_login_msg" class="glyphicon glyphicon-chevron-right"></div>
+							<span id="text_login_msg">Solucion</span>
+							<p></p>
+							<p id="soluciones_texto" name="soluciones_texto"></p>
+						</div>
+					</div>	
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
     
 <?php footer_paginas(); ?>
 <script src="../controller/tabla_ejercicio.js"></script>

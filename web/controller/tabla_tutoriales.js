@@ -81,10 +81,10 @@ function mostrar(id_tutorial){
       $.each(response.data, function(index, value) {
       });
       
-      var ins = response.data['instrucciones'];
+      var ins = response.texto;
       console.log(ins);
 	  document.getElementById("titulo-modal-instrucciones").innerHTML = response.data['nombre_tutorial'];
-      document.getElementById("instrucciones_texto").innerHTML = response.data['instrucciones'];
+      document.getElementById("instrucciones_texto").innerHTML = response.texto;
       $("#modal_instrucciones_popup").modal("show");
     } else {
       swal('Error', response.msg[2], 'error');

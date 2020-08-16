@@ -385,7 +385,7 @@ function pagina_lenguaje (){
 						<div class="col-xl-8 col-lg-7">
 							<div class="card shadow mb-4">
 								<div class="card-body">
-									<div id="grafico" style="height: 300px; width: 100%;"></div>				  
+									<canvas id="myChart" width=25 height="20"></canvas>			  
 								</div>
 							</div>
 						</div>
@@ -850,6 +850,8 @@ function footer_paginas(){
 	<script src="../pdf/vfs_fonts.js"></script>
 	<script src="../pdf/buttons.html5.min.js"></script>
 	
+	<script src="../vendor/chart.js/Chart.min.js"></script>
+	<script src="../controller/grafico.js"></script>
 	
 
 EOF;
