@@ -181,7 +181,7 @@ function main_pagina_in (){
 	$str = <<<EOF
 	<main>
 		<section class="galeria">
-			<div class="contenedor2">
+			<div class="contenedor1">
 				<h2 class="titulo">¿Qué quieres aprender?</h2>
 				<div class="galeria-port">
 					<div class="imagen-galeria">
@@ -208,6 +208,28 @@ function main_pagina_in (){
 							<a href="../view/lenguaje.php?lenguaje=4&nombre_lenguaje=Java&ruta_imagen=../img/java.png"> <img src="../img/icono.png" alt=""></a>
 						</div>
 					</div>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="contenedor2">
+				<h2 class="titulo">Cantidad de actividades por lenguaje</h2>
+				<div class="row">
+				   <div class="col-md-12">	 
+					   <canvas id="miGrafico1"></canvas> 
+				   </div>
+				</div>
+
+			</div>
+		</section>
+		<section>
+			<div class="contenedor2">
+				<h2 class="titulo">Cantidad de actividades según la dificultad</h2>
+				<div class="row">
+				   <div class="col-md-12">	 
+					   <canvas id="miGrafico2"></canvas> 
+							  
+				   </div>
 				</div>
 			</div>
 		</section>
@@ -349,7 +371,7 @@ function sidebar (){
 				</a>
 			</li>
 			
-			<!-- Nav Item - Utilities Collapse Menu -->
+			
 			
 EOF;
 
@@ -365,10 +387,13 @@ function opcion_soluciones(){
 					<span>Soluciones</span>
 				</a>
 			</li>
+			
 		</ul>
 EOF;
 	$str_alumno = <<<EOF
+			
 		</ul>
+
 EOF;
 if ($_SESSION["tipo_usuario"] == 1){
 	echo $str_administrador;
@@ -660,15 +685,17 @@ function footer_paginas(){
 	
 
 	
-	
-	
 	<script src="../pdf/dataTables.buttons.min.js"></script>
 	<script src="../pdf/jszip.min.js"></script>
 	<script src="../pdf/pdfmake.min.js"></script>
 	<script src="../pdf/vfs_fonts.js"></script>
 	<script src="../pdf/buttons.html5.min.js"></script>
 	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js" integrity="sha256-JG6hsuMjFnQ2spWq0UiaDRJBaarzhFbUxiUTxQDA9Lk=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
 	<script src="../vendor/chart.js/Chart.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" integrity="sha256-CfcERD4Ov4+lKbWbYqXD6aFM9M51gN4GUEtDhkWABMo=" crossorigin="anonymous"></script>
+
 	<script src="../controller/grafico.js"></script>
 	
 

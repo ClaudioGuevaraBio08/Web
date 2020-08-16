@@ -1,35 +1,121 @@
-$.ajax({
-	url: '../lib/grafico.php',
-	data: {accion: 1},
-	dataType: 'json',
-	async: true,
-	success: function(data) {
-		if(data.success){
-			var lenguaje = [];
-			var cantidad = [];
-			
-			var data_json = JSON.parse(data);
-			console.log(data_json);
-			
-			for (var i = 0; i<data_json.data.length; i++){
-				lenguaje.push(data_json.data[i].id_lenguaje);
-				cantidad.push(data_json.data[i].cantidad);
-			}
-			
-			console.log(lenguaje);
-			console.log(cantidad);
-			
-			var ctx = document.getElementById('myChart').getContext('2d');
-			var cantidad_por_lenguaje = new Chart(ctx,
-			{
-				"type":"bar",
-				"data":{
-					"labels":lenguaje,
-					"datasets":[{data: cantidad}]
-				}
-			});
-		}
-	}
-	
+$(document).ready(function() {
+    $.ajax({
+        url: "../lib/grafico.php?accion=1",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        method: "GET",
+        success: function(data) {
+            var nombre = [];
+            var cantidad = [];
+            var color = ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)'];
+            var bordercolor = ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'];
+            console.log(data);
+ 
+            for (var i in data) {
+                nombre.push(data[i].nombre);
+                cantidad.push(data[i].cantidad);
+            }
+ 
+            var chartdata = {
+                labels: nombre,
+                datasets: [{
+                    label: nombre,
+                    backgroundColor: color,
+                    borderColor: color,
+                    borderWidth: 2,
+                    hoverBackgroundColor: color,
+                    hoverBorderColor: bordercolor,
+                    data: cantidad
+                }]
+            };
+ 
+            var mostrar = $("#miGrafico1");
+ 
+            var grafico = new Chart(mostrar, {
+                type: 'doughnut',
+                data: chartdata,
+                options: {
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
 });
 
+
+
+$(document).ready(function() {
+    $.ajax({
+        url: "../lib/grafico.php?accion=2",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        method: "GET",
+        success: function(data) {
+            var nombre = [];
+            var cantidad = [];
+            var color = ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)'];
+            var bordercolor = ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'];
+            console.log(data);
+ 
+            for (var i in data) {
+                nombre.push(data[i].nombre);
+                cantidad.push(data[i].cantidad);
+            }
+ 
+            var chartdata = {
+                labels: nombre,
+                datasets: [{
+                    backgroundColor: color,
+                    borderColor: color,
+                    borderWidth: 2,
+                    hoverBackgroundColor: color,
+                    hoverBorderColor: bordercolor,
+                    data: cantidad
+                }]
+            };
+ 
+            var mostrar = $("#miGrafico2");
+ 
+            var grafico = new Chart(mostrar, {
+                type: 'bar',
+                data: chartdata,
+                options: {
+					legend: {
+						display: false
+					},
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+							scaleLabel: {
+								display: true,
+								labelString: 'Cantidad'
+							},
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        xAxes: [{
+							scaleLabel: {
+								display: true,
+								labelString: 'Dificultad'
+							}
+						}],
+                    }
+                }
+            });
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+});

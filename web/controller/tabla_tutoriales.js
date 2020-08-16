@@ -1,6 +1,6 @@
 $(function() {  
+	obtenerTutorialesAlumno();	
 	obtenerTutorialesAdministrador();
-	obtenerTutorialesAlumno();
 });
 
 

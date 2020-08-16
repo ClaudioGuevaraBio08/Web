@@ -17,7 +17,7 @@ navbar();
 main_pagina_in();
 ?>
     
-<?php footer(); ?>
+<?php footer_paginas(); ?>
 <script src="../controller/index.js"></script>
 </body>
 </html>

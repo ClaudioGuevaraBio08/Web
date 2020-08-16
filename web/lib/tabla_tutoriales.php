@@ -88,7 +88,7 @@ function actualizar ($conn) {
   $fecha = date_create();
   $str = "../archivos/tutoriales/". $correo. "_". $nombre_tutorial . "_". date_timestamp_get($fecha). ".txt";
   $ar = fopen($str, "a");
-  write($ar, $instrucciones);
+  fwrite($ar, $instrucciones);
   fclose($ar);
   
   $sql= "update tutorial set nombre_tutorial = :nombre_tutorial, instrucciones = :instrucciones, link_video = :link_video where id_tutorial = :id_tutorial;";
@@ -96,7 +96,7 @@ function actualizar ($conn) {
   $stmt = $conn->prepare($sql);
   $stmt->bindValue(':id_tutorial', $id_tutorial); 
   $stmt->bindValue(':nombre_tutorial', $nombre_tutorial);  
-  $stmt->bindValue(':instrucciones', $instrucciones);
+  $stmt->bindValue(':instrucciones', $str);
   $stmt->bindValue(':link_video', $link_video);
     
   $res = ejecutarSQL($stmt);  
