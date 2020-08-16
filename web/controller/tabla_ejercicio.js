@@ -152,6 +152,7 @@ function mostrar_solucion(id_actividad){
       $.each(response.data, function(index, value) {
       });
       
+      console.log(response.texto);
 	  document.getElementById("titulo-modal-soluciones").innerHTML = response.data['nombre'];
       document.getElementById("soluciones_texto").innerHTML = response.texto;
       $("#modal_soluciones_popup").modal("show");
@@ -215,6 +216,7 @@ function agregarBD() {
       swal('Error', e.responseText, 'error');
     }
   }); 
+  window.location.reload();
 }
 
 /* obtiene datos de una especialidad y los muestra en el modal */
@@ -256,6 +258,7 @@ function editarBD(id_actividad) {
       swal('Error', response.msg[2], 'error');
     }
   }, 'json');
+  window.location.reload();
 }
 
 /* elimina un registro de la base de datos */
@@ -280,7 +283,8 @@ function eliminar(id_actividad) {
       }, error: function (e) {
         swal('Error', e.responseText, 'error');
       }
-    });    
+    });  
+    window.location.reload();  
   });
 }
 

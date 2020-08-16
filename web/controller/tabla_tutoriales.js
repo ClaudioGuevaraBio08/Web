@@ -1,20 +1,17 @@
 $(function() {  
-	obtenerTutoriales();
+	obtenerTutorialesAdministrador();
+	obtenerTutorialesAlumno();
 });
 
 
-function obtenerTutoriales(){
-	var accion_agregar = "<button type='button' class='btn btn-success btn-xs' " +
-                       "onclick='agregar();' title='Agregar'>" + 
-                       "<i class='fas fa-plus'></i></button>";
-    
-	var table = $('#tabla-tutoriales').dataTable({
+function obtenerTutorialesAlumno(){
+
+	var table = $('#tabla-tutoriales-alumno').dataTable({
 		"columnDefs": [
       {"title": "N° Tutorial", "targets": 0, "orderable": false, "className": "dt-body-center", "visible": true},
       {"title": "Titulo", "targets": 1, "orderable": true, "className": "dt-body-center"},
-      {"title": "Instrucciones", "targets": 2, "orderable": true, "className": "dt-body-center"},
-      {"title": "Link", "targets": 3, "orderable": true, "className": "dt-body-center"},
-      {"title": accion_agregar, "targets": 4, "orderable": false, "className": "dt-nowrap dt-right"},
+      {"title": "Link", "targets": 2, "orderable": true, "className": "dt-body-center"},
+      {"title": "Opciones", "targets": 3, "orderable": false, "className": "dt-nowrap dt-right"},
     ],
     dom: 'Bfrtip',
         buttons: [
@@ -56,7 +53,72 @@ function obtenerTutoriales(){
           table.fnAddData([
             data[i]["id_tutorial"],
             data[i]["nombre_tutorial"],
-            data[i]["instrucciones"],
+            data[i]["link_video"],
+            "<button type='button' class='btn btn-info btn-xs' onclick='mostrar(" + data[i]["id_tutorial"] + ");' title='Instrucciones'>"+
+            "<i class='fas fa-eye'></i></button>"
+          ]);
+        }
+      } else {
+        swal('Error', response.msg[2], 'error');
+      }      
+    }, error: function(jqXHR, textStatus, errorThrown ) {
+      swal('Error', textStatus + " " + errorThrown, 'error');
+    }
+  })
+}
+
+function obtenerTutorialesAdministrador(){
+	var accion_agregar = "<button type='button' class='btn btn-success btn-xs' " +
+                       "onclick='agregar();' title='Agregar'>" + 
+                       "<i class='fas fa-plus'></i></button>";
+    
+	var table = $('#tabla-tutoriales-administrador').dataTable({
+		"columnDefs": [
+      {"title": "N° Tutorial", "targets": 0, "orderable": false, "className": "dt-body-center", "visible": true},
+      {"title": "Titulo", "targets": 1, "orderable": true, "className": "dt-body-center"},
+      {"title": "Link", "targets": 2, "orderable": true, "className": "dt-body-center"},
+      {"title": accion_agregar, "targets": 3, "orderable": false, "className": "dt-nowrap dt-right"},
+    ],
+    dom: 'Bfrtip',
+        buttons: [
+            'csvHtml5',
+            'pdfHtml5'
+        ],
+    "searching": true,
+    "search": {
+      "regex": true,
+      "smart": true
+    },
+    "scrollX": false,
+    "order": [[1, "asc"]],
+    "bDestroy": true,
+    "deferRender": true,
+    "language": {
+    },
+    "pageLength": 10,
+    "bPaginate": true,
+    "bLengthChange": true,
+    "bFilter": true,
+    "bInfo": true,
+    "bAutoWidth": false
+	});
+	
+	table.fnClearTable();
+	
+	$.ajax({
+    url: '../lib/tabla_tutoriales.php',
+    data: {accion: 1},
+    type: 'POST',
+    dataType: 'json',
+    async: true,
+    success: function(response) {
+      if (response.success) {
+        var data = response.data;
+        
+        for(var i = 0; i < data.length; i++) {
+          table.fnAddData([
+            data[i]["id_tutorial"],
+            data[i]["nombre_tutorial"],
             data[i]["link_video"],
             "<button type='button' class='btn btn-warning btn-xs' onclick='editar(" + data[i]["id_tutorial"] + ");' title='Editar'>"+
             "<i class='fas fa-edit'></i></button>&nbsp;" +
@@ -78,11 +140,8 @@ function obtenerTutoriales(){
 function mostrar(id_tutorial){
 	$.post("../lib/tabla_tutoriales.php?accion=6", {id_tutorial: id_tutorial}, function(response) {    
     if (response.success) {
-      $.each(response.data, function(index, value) {
-      });
-      
-      var ins = response.texto;
-      console.log(ins);
+
+
 	  document.getElementById("titulo-modal-instrucciones").innerHTML = response.data['nombre_tutorial'];
       document.getElementById("instrucciones_texto").innerHTML = response.texto;
       $("#modal_instrucciones_popup").modal("show");
@@ -128,6 +187,7 @@ function agregarBD() {
       swal('Error', e.responseText, 'error');
     }
   }); 
+  window.location.reload();
 }
 
 /* obtiene datos de una especialidad y los muestra en el modal */
@@ -164,11 +224,12 @@ function editarBD(id_tutorial) {
   
     if (response.success) {
       $("#modal_tutoriales_popup").modal("hide");
-      obtenerTutoriales();
+      
     } else {
       swal('Error', response.msg[2], 'error');
     }
   }, 'json');
+  window.location.reload();
 }
 
 /* elimina un registro de la base de datos */
@@ -186,14 +247,16 @@ function eliminar(id_tutorial) {
       data: {accion: 5, id_tutorial: id_tutorial},
       success: function (response) {    
         if (response.success) {          
-          obtenerTutoriales();
+          obtenerTutorialesAdministrador();
+          obtenerTutorialesAlumno();
         } else {
           swal('Error', response.msg[2], 'error');
         }
       }, error: function (e) {
         swal('Error', e.responseText, 'error');
       }
-    });    
+    });
+    window.location.reload();    
   });
 }
 

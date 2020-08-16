@@ -11,9 +11,8 @@ function obtenerSoluciones(){
 	var table = $('#tabla-soluciones').dataTable({
 		"columnDefs": [
       {"title": "N° Actividad", "targets": 0, "orderable": false, "className": "dt-body-center", "visible": true},
-      {"title": "Lenguaje", "targets": 1, "orderable": true, "className": "dt-body-center"},
-      {"title": "Solucion", "targets": 2, "orderable": true, "className": "dt-body-center"},
-      {"title": accion_agregar, "targets": 3, "orderable": false, "className": "dt-nowrap dt-right"},
+      {"title": "Titulo", "targets": 1, "orderable": true, "className": "dt-body-center"},
+      {"title": accion_agregar, "targets": 2, "orderable": false, "className": "dt-nowrap dt-right"},
     ],
     dom: 'Bfrtip',
         buttons: [
@@ -54,8 +53,7 @@ function obtenerSoluciones(){
         for(var i = 0; i < data.length; i++) {
           table.fnAddData([
             data[i]["id_actividad"],
-            data[i]["nombre_lenguaje"],
-            data[i]["solucion"],
+            data[i]["nombre_actividad"],
             "<button type='button' class='btn btn-warning btn-xs' onclick='editar(" + data[i]["id_actividad"] + ");' title='Editar'>"+
             "<i class='fas fa-edit'></i></button>&nbsp;" +
             "<button type='button' class='btn btn-danger btn-xs' onclick='eliminar(" + data[i]["id_actividad"] + ");' title='Eliminar'>"+

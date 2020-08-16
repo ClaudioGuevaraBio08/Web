@@ -75,9 +75,17 @@ function actualizar ($conn) {
   $nombre = $_REQUEST['nombre'];
   $dificultad = $_REQUEST['lista_dificultad'];
   $enunciado = $_REQUEST['enunciado'];
+  
+  $ruta_anterior = "select enunciado from actividad where id_actividad = :id_actividad;";
+  $stmt = $conn->prepare($ruta_anterior);
+  $stmt->bindValue(':id_actividad', $id_actividad); 
+  $res = ejecutarSQL($stmt); 
+  
+  unlink($res["data"][0]["enunciado"]);
+  
   $correo = $_SESSION['correo'];
   $fecha = date_create();
-  $str = "../ejercicios/". $correo. "_". $nombre. "_". date_timestamp_get($fecha). ".txt";
+  $str = "../archivos/ejercicios/". $correo. "_". $nombre. "_". date_timestamp_get($fecha). ".txt";
   $ar = fopen($str, "a");
   fwrite($ar, $enunciado);
   fclose($ar);
@@ -142,11 +150,16 @@ function mostrar_solucion ($conn) {
   $stmt->bindValue(':lenguaje', $lenguaje); 
     
   $res = ejecutarSQL($stmt);  
-  $texto = fopen($res["data"][0]["solucion"],"r");
-  while(!feof($texto)){
-	$linea = $linea . fgets($texto) . "<br>";
+  if (sizeof($res["data"][0]["solucion"]) == 0){
+	$res["data"][0]["nombre"] = "No hay solucion disponible";
   }
-  fclose($texto);
+  else{
+	  $texto = fopen($res["data"][0]["solucion"],"r");
+	  while(!feof($texto)){
+		$linea = $linea . fgets($texto) . "<br>";
+	  }
+	  fclose($texto);
+  }
 	
   echo json_encode(array("success"=>$res["success"], "msg"=>$res["msg"], "data"=>$res["data"][0], "texto"=>$linea));
 

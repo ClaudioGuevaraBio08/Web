@@ -14,6 +14,7 @@ head_lenguajes();
 <body>
 <?php 
 sidebar();
+opcion_soluciones();
 navbar_lenguaje();
 tutoriales();
 ?>
@@ -53,7 +54,7 @@ tutoriales();
 				</form>
 				<div class="modal-footer">
 					<div class="text-center">
-						<button id="agregar_tutorial" type="submit" class="btn btn-success btn-sm btn-block">Agregar</button>
+						<button id="agregar_tutorial" name="agregar_tutorial" type="submit" class="btn btn-success btn-sm btn-block">Agregar</button>
 					</div>
 				</div>
 			</div>
