@@ -23,6 +23,8 @@ head_lenguajes();
 
 <body>
 <?php 
+sidebar();
+navbar_lenguaje();
 pagina_lenguaje();
 ?>
     
