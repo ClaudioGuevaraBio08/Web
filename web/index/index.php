@@ -1,5 +1,8 @@
 <?php
 require_once("../lib/common.php");
+if($_SESSION["loggedinMIAPP"]){
+	header('Location: ../view/');
+}
 ?>
 
 <!DOCTYPE html>
