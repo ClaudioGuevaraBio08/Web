@@ -819,22 +819,6 @@ if ($_SESSION["tipo_usuario"] == 1){
 
 function footer(){
 	$str = <<<EOF
-	<footer>
-		<div class="contenedor-footer">
-			<div class="content-foo">
-				<img src="../img/insta.png" alt="">
-				<p>wwww.nose.com</p>
-			</div>
-			<div class="content-foo">
-				<img src="../img/face.png" alt="">
-				<p>www.nose.com</p>
-			</div>
-			<div class="content-foo">
-				<img src="../img/gmail.png" alt="">
-				<p>chichadioss23@gmail.com</p>
-			</div>
-		</div>
-	</footer>
 	<script src="../extras/modernizr/modernizr-2.8.3.min.js"></script>
 	<script src="../extras/jquery/jquery-3.2.1.min.js"></script>
 	<script src="../extras/bootstrap/bootstrap.min.js"></script>

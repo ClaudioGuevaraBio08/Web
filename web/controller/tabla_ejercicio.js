@@ -179,7 +179,8 @@ function agregarBD() {
     success: function (response) {    
       if (response.success) {          
         $("#modal_ejercicios_popup").modal("hide");
-        obtenerEjercicios();
+        obtenerEjerciciosAlumno();
+        obtenerEjerciciosAdministrador();
       } else {
         swal('Error', response.msg[2], 'error');
       }
@@ -187,7 +188,6 @@ function agregarBD() {
       swal('Error', e.responseText, 'error');
     }
   }); 
-  window.location.reload();
 }
 /* obtiene datos de una especialidad y los muestra en el modal */
 function editar(id_actividad) {
@@ -217,12 +217,12 @@ function editarBD(id_actividad) {
   $.post("../lib/tabla_ejercicios.php?accion=4&id_actividad=" + id_actividad, form, function(response) {
     if (response.success) {
       $("#modal_ejercicios_popup").modal("hide");
-      obtenerEjercicios();
+      obtenerEjerciciosAlumno();
+      obtenerEjerciciosAdministrador();
     } else {
       swal('Error', response.msg[2], 'error');
     }
   }, 'json');
-  window.location.reload();
 }
 /* elimina un registro de la base de datos */
 function eliminar(id_actividad) {
@@ -239,7 +239,8 @@ function eliminar(id_actividad) {
       data: {accion: 5, id_actividad: id_actividad},
       success: function (response) {    
         if (response.success) {          
-          obtenerEjercicios();
+          obtenerEjerciciosAlumno();
+          obtenerEjerciciosAdministrador();
         } else {
           swal('Error', response.msg[2], 'error');
         }
@@ -247,7 +248,6 @@ function eliminar(id_actividad) {
         swal('Error', e.responseText, 'error');
       }
     });  
-    window.location.reload();  
   });
 }
 /* valida que los datos obligatorios tengan algún valor */
@@ -256,5 +256,15 @@ function validarFormularioEspecialista () {
     swal('Atención', "El Nombre es requerido", 'info');
     return false;
   }  
-  return true;
+  else if ($('#enunciado').val().trim().length < 1){
+    swal('Atención', 'El enunciado es requerido', 'info');
+    return false;
+  }
+  else if ($('#lista_dificultad').val() == 0) { 
+    swal('Atención', 'La dificultad es requerida', 'info');
+    return false;
+  }
+  else{
+    return true;
+  }
 }

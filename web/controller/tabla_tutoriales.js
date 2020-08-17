@@ -5,10 +5,9 @@ $(function() {
 
 
 function obtenerTutorialesAlumno(){
-
 	var table = $('#tabla-tutoriales-alumno').dataTable({
 		"columnDefs": [
-      {"title": "N° Tutorial", "targets": 0, "orderable": false, "className": "dt-body-center", "visible": true},
+      {"title": "N° Tutorial", "targets": 0, "orderable": true, "className": "dt-body-center", "visible": true},
       {"title": "Titulo", "targets": 1, "orderable": true, "className": "dt-body-center"},
       {"title": "Link", "targets": 2, "orderable": true, "className": "dt-body-center"},
       {"title": "Opciones", "targets": 3, "orderable": false, "className": "dt-nowrap dt-right"},
@@ -59,10 +58,24 @@ function obtenerTutorialesAlumno(){
           ]);
         }
       } else {
-        swal('Error', response.msg[2], 'error');
+        swal({
+          title: "Error",
+          type: "error",
+          showConfirmButton: false,
+         });  
+          setTimeout(() => {
+            window.location = response.location;
+          }, 1500);
       }      
     }, error: function(jqXHR, textStatus, errorThrown ) {
-      swal('Error', textStatus + " " + errorThrown, 'error');
+      swal({
+        title: "Error",
+        type: "error",
+        showConfirmButton: false,
+       });  
+        setTimeout(() => {
+          window.location = response.location;
+        }, 1500);
     }
   })
 }
@@ -74,7 +87,7 @@ function obtenerTutorialesAdministrador(){
     
 	var table = $('#tabla-tutoriales-administrador').dataTable({
 		"columnDefs": [
-      {"title": "N° Tutorial", "targets": 0, "orderable": false, "className": "dt-body-center", "visible": true},
+      {"title": "N° Tutorial", "targets": 0, "orderable": true, "className": "dt-body-center", "visible": true},
       {"title": "Titulo", "targets": 1, "orderable": true, "className": "dt-body-center"},
       {"title": "Link", "targets": 2, "orderable": true, "className": "dt-body-center"},
       {"title": accion_agregar, "targets": 3, "orderable": false, "className": "dt-nowrap dt-right"},
@@ -129,10 +142,24 @@ function obtenerTutorialesAdministrador(){
           ]);
         }
       } else {
-        swal('Error', response.msg[2], 'error');
+        swal({
+          title: "Error",
+          type: "error",
+          showConfirmButton: false,
+         });  
+          setTimeout(() => {
+            window.location = response.location;
+          }, 1500);
       }      
     }, error: function(jqXHR, textStatus, errorThrown ) {
-      swal('Error', textStatus + " " + errorThrown, 'error');
+      swal({
+        title: "Error",
+        type: "error",
+        showConfirmButton: false,
+       });  
+        setTimeout(() => {
+          window.location = response.location;
+        }, 1500);
     }
   })
 }
@@ -146,7 +173,14 @@ function mostrar(id_tutorial){
       document.getElementById("instrucciones_texto").innerHTML = response.texto;
       $("#modal_instrucciones_popup").modal("show");
     } else {
-      swal('Error', response.msg[2], 'error');
+      swal({
+        title: "Error",
+        type: "error",
+        showConfirmButton: false,
+       });  
+        setTimeout(() => {
+          window.location = response.location;
+        }, 1500);
     }
   }, 'json');
 	
@@ -178,16 +212,30 @@ function agregarBD() {
     success: function (response) {    
       if (response.success) {          
         $("#modal_tutoriales_popup").modal("hide");
-        obtenerTutoriales();
+        obtenerTutorialesAlumno();
+        obtenerTutorialesAdministrador();
           
       } else {
-        swal('Error', response.msg[2], 'error');
+        swal({
+          title: "Error",
+          type: "error",
+          showConfirmButton: false,
+         });  
+          setTimeout(() => {
+            window.location = response.location;
+          }, 1500);
       }
     }, error: function (e) {
-      swal('Error', e.responseText, 'error');
+      swal({
+        title: "Error",
+        type: "error",
+        showConfirmButton: false,
+       });  
+        setTimeout(() => {
+          window.location = response.location;
+        }, 1500);
     }
   }); 
-  window.location.reload();
 }
 
 /* obtiene datos de una especialidad y los muestra en el modal */
@@ -208,37 +256,48 @@ function editar(id_tutorial) {
       $("#agregar_tutorial").attr("onClick", "editarBD(" + id_tutorial + ")");
       $("#modal_tutoriales_popup").modal("show");
     } else {
-      swal('Error', response.msg[2], 'error');
+      swal({
+        title: "Error",
+        type: "error",
+        showConfirmButton: false,
+       });  
+        setTimeout(() => {
+          window.location = response.location;
+        }, 1500);
     }
   }, 'json');
 }
-
 /* actualiza los datos en la base de datos */
 function editarBD(id_tutorial) {
-  val = validarFormularioEspecialista();
-  
+  val = validarFormularioEspecialista(); 
   if (val == false) return false;
-  
   var form = $("#tutorial_form").serialize();
   $.post("../lib/tabla_tutoriales.php?accion=4&id_tutorial=" + id_tutorial, form, function(response) {
-  
     if (response.success) {
       $("#modal_tutoriales_popup").modal("hide");
-      
+      obtenerTutorialesAlumno();
+      obtenerTutorialesAdministrador();
     } else {
-      swal('Error', response.msg[2], 'error');
+      swal({
+        title: "Error",
+        type: "error",
+        showConfirmButton: false,
+       });  
+        setTimeout(() => {
+          window.location = response.location;
+        }, 1500);
     }
   }, 'json');
-  window.location.reload();
 }
 
 /* elimina un registro de la base de datos */
 function eliminar(id_tutorial) {
   swal({
-    title: '¿Está seguro (a)?',
-    text: "Esta operación no se puede revertir!",
+    title: '¿Seguro?',
+    text: "Esta operación no se puede revertir",
     type: 'warning',
-    showCancelButton: true,
+    showCancelButton: false,
+    showConfirmButton: true,
   }).then(function () {
     $.ajax({
       dataType: 'json',
@@ -250,23 +309,39 @@ function eliminar(id_tutorial) {
           obtenerTutorialesAdministrador();
           obtenerTutorialesAlumno();
         } else {
-          swal('Error', response.msg[2], 'error');
+          swal({
+            title: "Error",
+            type: "error",
+            showConfirmButton: false,
+           });  
+            setTimeout(() => {
+              window.location = response.location;
+            }, 1500);
         }
       }, error: function (e) {
-        swal('Error', e.responseText, 'error');
+        swal({
+          title: "Error",
+          type: "error",
+          showConfirmButton: false,
+         });  
+          setTimeout(() => {
+            window.location = response.location;
+          }, 1500);
       }
     });
-    window.location.reload();    
   });
 }
-
 /* valida que los datos obligatorios tengan algún valor */
 function validarFormularioEspecialista () {
-  if ($('#nombre_tutorial').val().trim().length<1) {
+  if ($('#nombre_tutorial').val().trim().length<1){
     swal('Atención', "El Nombre es requerido", 'info');
     return false;
   }
-  
-  return true;
+  else if ($('#instrucciones').val().trim().length < 1){
+    swal('Atención', 'Las instrucciones son requeridas', 'info');
+    return false;
+  }
+  else {
+    return true;
+  }
 }
-

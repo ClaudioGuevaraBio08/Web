@@ -10,7 +10,7 @@ function obtenerSoluciones(){
     
 	var table = $('#tabla-soluciones').dataTable({
 		"columnDefs": [
-      {"title": "N° Actividad", "targets": 0, "orderable": false, "className": "dt-body-center", "visible": true},
+      {"title": "N° Actividad", "targets": 0, "orderable": true, "className": "dt-body-center", "visible": true},
       {"title": "Titulo", "targets": 1, "orderable": true, "className": "dt-body-center"},
       {"title": accion_agregar, "targets": 2, "orderable": false, "className": "dt-nowrap dt-right"},
     ],
@@ -196,10 +196,9 @@ function eliminar(id_actividad) {
 /* valida que los datos obligatorios tengan algún valor */
 function validarFormularioEspecialista () {
   if ($('#solucion').val().trim().length<1) {
-    swal('Atención', "El Nombre es requerido", 'info');
+    swal('Atención', "La solución es requerida", 'info');
     return false;
   }
-  
   return true;
 }
 

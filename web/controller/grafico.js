@@ -9,13 +9,10 @@ $(document).ready(function() {
             var cantidad = [];
             var color = ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)'];
             var bordercolor = ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'];
-            console.log(data);
- 
             for (var i in data) {
                 nombre.push(data[i].nombre);
                 cantidad.push(data[i].cantidad);
             }
- 
             var chartdata = {
                 labels: nombre,
                 datasets: [{
@@ -28,9 +25,7 @@ $(document).ready(function() {
                     data: cantidad
                 }]
             };
- 
             var mostrar = $("#miGrafico1");
- 
             var grafico = new Chart(mostrar, {
                 type: 'doughnut',
                 data: chartdata,
@@ -46,14 +41,8 @@ $(document).ready(function() {
                 }
             });
         },
-        error: function(data) {
-            console.log(data);
-        }
     });
 });
-
-
-
 $(document).ready(function() {
     $.ajax({
         url: "../lib/grafico.php?accion=2",
@@ -65,13 +54,10 @@ $(document).ready(function() {
             var cantidad = [];
             var color = ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)'];
             var bordercolor = ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'];
-            console.log(data);
- 
             for (var i in data) {
                 nombre.push(data[i].nombre);
                 cantidad.push(data[i].cantidad);
             }
- 
             var chartdata = {
                 labels: nombre,
                 datasets: [{
@@ -83,9 +69,7 @@ $(document).ready(function() {
                     data: cantidad
                 }]
             };
- 
             var mostrar = $("#miGrafico2");
- 
             var grafico = new Chart(mostrar, {
                 type: 'bar',
                 data: chartdata,
@@ -114,8 +98,5 @@ $(document).ready(function() {
                 }
             });
         },
-        error: function(data) {
-            console.log(data);
-        }
     });
 });

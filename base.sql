@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.12 (Ubuntu 10.12-0ubuntu0.18.04.1)
--- Dumped by pg_dump version 10.12 (Ubuntu 10.12-0ubuntu0.18.04.1)
+-- Dumped from database version 12.2 (Ubuntu 12.2-4)
+-- Dumped by pg_dump version 12.2 (Ubuntu 12.2-4)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -16,23 +16,9 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
 SET default_tablespace = '';
 
-SET default_with_oids = false;
+SET default_table_access_method = heap;
 
 --
 -- Name: actividad; Type: TABLE; Schema: public; Owner: postgres
@@ -111,9 +97,7 @@ ALTER SEQUENCE public.dificultad_id_dificultad_seq OWNED BY public.dificultad.id
 
 CREATE TABLE public.lenguaje (
     id_lenguaje integer NOT NULL,
-    nombre character varying(1024) NOT NULL,
-    foto character varying(1024) NOT NULL,
-    resena character varying(1024) NOT NULL
+    nombre character varying(1024) NOT NULL
 );
 
 
@@ -140,19 +124,6 @@ ALTER TABLE public.lenguaje_id_lenguaje_seq OWNER TO postgres;
 
 ALTER SEQUENCE public.lenguaje_id_lenguaje_seq OWNED BY public.lenguaje.id_lenguaje;
 
-
---
--- Name: responder; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.responder (
-    correo character varying(1024) NOT NULL,
-    id_actividad integer NOT NULL,
-    respuesta character varying(1024) NOT NULL
-);
-
-
-ALTER TABLE public.responder OWNER TO postgres;
 
 --
 -- Name: solucion; Type: TABLE; Schema: public; Owner: postgres
@@ -293,10 +264,6 @@ ALTER TABLE ONLY public.tutorial ALTER COLUMN id_tutorial SET DEFAULT nextval('p
 --
 
 COPY public.actividad (id_actividad, id_dificultad, correo, enunciado, nombre) FROM stdin;
-25	1	claudio@gmail.com	../ejercicios/claudio@gmail.com_1_1597281077.txt	1
-26	1	claudio@gmail.com	../ejercicios/claudio@gmail.com_2_1597281084.txt	2
-27	1	claudio@gmail.com	../ejercicios/claudio@gmail.com_asd_1597281092.txt	asd
-28	1	claudio@gmail.com	../ejercicios/claudio@gmail.com_asd_1597281099.txt	asd
 \.
 
 
@@ -305,8 +272,10 @@ COPY public.actividad (id_actividad, id_dificultad, correo, enunciado, nombre) F
 --
 
 COPY public.dificultad (id_dificultad, nombre) FROM stdin;
-1	facil
-2	dificil
+1	Facil
+2	Medio
+3	Dificil
+4	Muy Dificil
 \.
 
 
@@ -314,15 +283,11 @@ COPY public.dificultad (id_dificultad, nombre) FROM stdin;
 -- Data for Name: lenguaje; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.lenguaje (id_lenguaje, nombre, foto, resena) FROM stdin;
-\.
-
-
---
--- Data for Name: responder; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.responder (correo, id_actividad, respuesta) FROM stdin;
+COPY public.lenguaje (id_lenguaje, nombre) FROM stdin;
+1	C
+2	C++
+3	Python
+4	Java
 \.
 
 
@@ -339,7 +304,8 @@ COPY public.solucion (id_lenguaje, id_actividad, solucion) FROM stdin;
 --
 
 COPY public.tipo_usuario (id_tipo, nombre_tipo) FROM stdin;
-1	alumno
+1	Administrador
+2	Alumno
 \.
 
 
@@ -356,9 +322,13 @@ COPY public.tutorial (id_tutorial, id_lenguaje, nombre_tutorial, instrucciones, 
 --
 
 COPY public.usuario (correo, id_tipo, contrasena, nombre, apellido) FROM stdin;
-claudio@gmail.com	1	cU8rVzh2L29JVHR1Z21hMThMR3pMUT09	claudio	guevara
-gabrielcabas123@gmail.com	1	cU8rVzh2L29JVHR1Z21hMThMR3pMUT09	Gabriel	Cabas
-guevaravasquez.claudionicolas@gmail.com	1	cU8rVzh2L29JVHR1Z21hMThMR3pMUT09	claudio	Cabas
+usu1@admin.com	1	cU8rVzh2L29JVHR1Z21hMThMR3pMUT09	Usuario	Admin
+usu2@admin.com	1	cU8rVzh2L29JVHR1Z21hMThMR3pMUT09	Usuario	Admin
+usu3@admin.com	1	cU8rVzh2L29JVHR1Z21hMThMR3pMUT09	Usuario	Admin
+usu4@admin.com	1	cU8rVzh2L29JVHR1Z21hMThMR3pMUT09	Usuario	Admin
+usu5@admin.com	1	cU8rVzh2L29JVHR1Z21hMThMR3pMUT09	Usuario	Admin
+gabriel@gmail.com	2	cU8rVzh2L29JVHR1Z21hMThMR3pMUT09	Gabriel	Cabas
+claudio@gmail.com	2	cU8rVzh2L29JVHR1Z21hMThMR3pMUT09	Claudio	Guevara
 \.
 
 
@@ -366,28 +336,28 @@ guevaravasquez.claudionicolas@gmail.com	1	cU8rVzh2L29JVHR1Z21hMThMR3pMUT09	claud
 -- Name: actividad_id_actividad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.actividad_id_actividad_seq', 28, true);
+SELECT pg_catalog.setval('public.actividad_id_actividad_seq', 1, false);
 
 
 --
 -- Name: dificultad_id_dificultad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.dificultad_id_dificultad_seq', 1, false);
+SELECT pg_catalog.setval('public.dificultad_id_dificultad_seq', 4, true);
 
 
 --
 -- Name: lenguaje_id_lenguaje_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.lenguaje_id_lenguaje_seq', 1, false);
+SELECT pg_catalog.setval('public.lenguaje_id_lenguaje_seq', 4, true);
 
 
 --
 -- Name: tipo_usuario_id_tipo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.tipo_usuario_id_tipo_seq', 1, false);
+SELECT pg_catalog.setval('public.tipo_usuario_id_tipo_seq', 2, true);
 
 
 --
@@ -419,14 +389,6 @@ ALTER TABLE ONLY public.dificultad
 
 ALTER TABLE ONLY public.lenguaje
     ADD CONSTRAINT pk_lenguaje PRIMARY KEY (id_lenguaje);
-
-
---
--- Name: responder pk_responder; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.responder
-    ADD CONSTRAINT pk_responder PRIMARY KEY (correo, id_actividad);
 
 
 --
@@ -504,27 +466,6 @@ CREATE INDEX posee_fk ON public.actividad USING btree (id_dificultad);
 
 
 --
--- Name: responder2_fk; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE INDEX responder2_fk ON public.responder USING btree (id_actividad);
-
-
---
--- Name: responder_fk; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE INDEX responder_fk ON public.responder USING btree (correo);
-
-
---
--- Name: responder_pk; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE UNIQUE INDEX responder_pk ON public.responder USING btree (correo, id_actividad);
-
-
---
 -- Name: solucion2_fk; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -587,22 +528,6 @@ ALTER TABLE ONLY public.actividad
 
 ALTER TABLE ONLY public.actividad
     ADD CONSTRAINT fk_activida_posee_dificult FOREIGN KEY (id_dificultad) REFERENCES public.dificultad(id_dificultad) ON UPDATE RESTRICT ON DELETE RESTRICT;
-
-
---
--- Name: responder fk_responde_responder_activida; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.responder
-    ADD CONSTRAINT fk_responde_responder_activida FOREIGN KEY (id_actividad) REFERENCES public.actividad(id_actividad) ON UPDATE RESTRICT ON DELETE RESTRICT;
-
-
---
--- Name: responder fk_responde_responder_usuario; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.responder
-    ADD CONSTRAINT fk_responde_responder_usuario FOREIGN KEY (correo) REFERENCES public.usuario(correo) ON UPDATE RESTRICT ON DELETE RESTRICT;
 
 
 --
