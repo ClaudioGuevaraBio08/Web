@@ -124,10 +124,24 @@ function obtenerEjerciciosAdministrador(){
           ]);
         }
       } else {
-        swal('Error', response.msg[2], 'error');
+        swal({
+          title: "Error",
+          type: "error",
+          showConfirmButton: false,
+         });  
+          setTimeout(() => {
+            window.location = response.location;
+          }, 1500);
       }      
     }, error: function(jqXHR, textStatus, errorThrown ) {
-      swal('Error', textStatus + " " + errorThrown, 'error');
+      swal({
+        title: "Error",
+        type: "error",
+        showConfirmButton: false,
+       });  
+        setTimeout(() => {
+          window.location = response.location;
+        }, 1500);
     }
   })
 }
@@ -141,7 +155,14 @@ function mostrar_solucion(id_actividad){
       document.getElementById("soluciones_texto").innerHTML = response.texto;
       $("#modal_soluciones_popup").modal("show");
     } else {
-      swal('Error', response.msg[2], 'error');
+      swal({
+        title: "Error",
+        type: "error",
+        showConfirmButton: false,
+       });  
+        setTimeout(() => {
+          window.location = response.location;
+        }, 1500);
     }
   }, 'json');
 }
@@ -154,7 +175,14 @@ function mostrar(id_actividad){
       document.getElementById("instrucciones_texto").innerHTML = response.texto;
       $("#modal_instrucciones_popup").modal("show");
     } else {
-      swal('Error', response.msg[2], 'error');
+      swal({
+        title: "Error",
+        type: "error",
+        showConfirmButton: false,
+       });  
+        setTimeout(() => {
+          window.location = response.location;
+        }, 1500);
     }
   }, 'json');
 }
@@ -182,10 +210,24 @@ function agregarBD() {
         obtenerEjerciciosAlumno();
         obtenerEjerciciosAdministrador();
       } else {
-        swal('Error', response.msg[2], 'error');
+        swal({
+          title: "Error",
+          type: "error",
+          showConfirmButton: false,
+         });  
+          setTimeout(() => {
+            window.location = response.location;
+          }, 1500);
       }
     }, error: function (e) {
-      swal('Error', e.responseText, 'error');
+      swal({
+        title: "Error",
+        type: "error",
+        showConfirmButton: false,
+       });  
+        setTimeout(() => {
+          window.location = response.location;
+        }, 1500);
     }
   }); 
 }
@@ -205,7 +247,14 @@ function editar(id_actividad) {
       $("#agregar_ejercicio").attr("onClick", "editarBD(" + id_actividad + ")");
       $("#modal_ejercicios_popup").modal("show");
     } else {
-      swal('Error', response.msg[2], 'error');
+      swal({
+        title: "Error",
+        type: "error",
+        showConfirmButton: false,
+       });  
+        setTimeout(() => {
+          window.location = response.location;
+        }, 1500);
     }
   }, 'json');
 }
@@ -220,7 +269,14 @@ function editarBD(id_actividad) {
       obtenerEjerciciosAlumno();
       obtenerEjerciciosAdministrador();
     } else {
-      swal('Error', response.msg[2], 'error');
+      swal({
+        title: "Error",
+        type: "error",
+        showConfirmButton: false,
+       });  
+        setTimeout(() => {
+          window.location = response.location;
+        }, 1500);
     }
   }, 'json');
 }
@@ -242,10 +298,24 @@ function eliminar(id_actividad) {
           obtenerEjerciciosAlumno();
           obtenerEjerciciosAdministrador();
         } else {
-          swal('Error', response.msg[2], 'error');
+          swal({
+            title: "Error",
+            type: "error",
+            showConfirmButton: false,
+           });  
+            setTimeout(() => {
+              window.location = response.location;
+            }, 1500);
         }
       }, error: function (e) {
-        swal('Error', e.responseText, 'error');
+        swal({
+          title: "Error",
+          type: "error",
+          showConfirmButton: false,
+         });  
+          setTimeout(() => {
+            window.location = response.location;
+          }, 1500);
       }
     });  
   });

@@ -63,10 +63,24 @@ function obtenerSoluciones(){
           ]);
         }
       } else {
-        swal('Error', response.msg[2], 'error');
+        swal({
+          title: "Error",
+          type: "error",
+          showConfirmButton: false,
+         });  
+          setTimeout(() => {
+            window.location = response.location;
+          }, 1500);
       }      
     }, error: function(jqXHR, textStatus, errorThrown ) {
-      swal('Error', textStatus + " " + errorThrown, 'error');
+      swal({
+        title: "Error",
+        type: "error",
+        showConfirmButton: false,
+       });  
+        setTimeout(() => {
+          window.location = response.location;
+        }, 1500);
     }
   })
 }
@@ -82,7 +96,14 @@ function mostrar(id_actividad){
       document.getElementById("instrucciones_texto").innerHTML = response.texto;
       $("#modal_instrucciones_popup").modal("show");
     } else {
-      swal('Error', response.msg[2], 'error');
+      swal({
+        title: "Error",
+        type: "error",
+        showConfirmButton: false,
+       });  
+        setTimeout(() => {
+          window.location = response.location;
+        }, 1500);
     }
   }, 'json');
 	
@@ -116,10 +137,24 @@ function agregarBD() {
         obtenerSoluciones();
           
       } else {
-        swal('Error', response.msg[2], 'error');
+        swal({
+          title: "Error",
+          type: "error",
+          showConfirmButton: false,
+         });  
+          setTimeout(() => {
+            window.location = response.location;
+          }, 1500);
       }
     }, error: function (e) {
-      swal('Error', e.responseText, 'error');
+      swal({
+        title: "Error",
+        type: "error",
+        showConfirmButton: false,
+       });  
+        setTimeout(() => {
+          window.location = response.location;
+        }, 1500);
     }
   }); 
 }
@@ -142,7 +177,14 @@ function editar(id_actividad) {
       $("#agregar_solucionupdate").attr("onClick", "editarBD(" + id_actividad + ")");
       $("#modal_solucionesupdate_popup").modal("show");
     } else {
-      swal('Error', response.msg[2], 'error');
+      swal({
+        title: "Error",
+        type: "error",
+        showConfirmButton: false,
+       });  
+        setTimeout(() => {
+          window.location = response.location;
+        }, 1500);
     }
   }, 'json');
 }
@@ -160,7 +202,14 @@ function editarBD(id_actividad) {
       $("#modal_solucionesupdate_popup").modal("hide");
       obtenerSoluciones();
     } else {
-      swal('Error', response.msg[2], 'error');
+      swal({
+        title: "Error",
+        type: "error",
+        showConfirmButton: false,
+       });  
+        setTimeout(() => {
+          window.location = response.location;
+        }, 1500);
     }
   }, 'json');
 }
@@ -184,10 +233,24 @@ function eliminar(id_actividad) {
         if (response.success) {          
           obtenerSoluciones();
         } else {
-          swal('Error', response.msg[2], 'error');
+          swal({
+            title: "Error",
+            type: "error",
+            showConfirmButton: false,
+           });  
+            setTimeout(() => {
+              window.location = response.location;
+            }, 1500);
         }
       }, error: function (e) {
-        swal('Error', e.responseText, 'error');
+        swal({
+          title: "Error",
+          type: "error",
+          showConfirmButton: false,
+         });  
+          setTimeout(() => {
+            window.location = response.location;
+          }, 1500);
       }
     });    
   });
@@ -204,7 +267,7 @@ function validarFormularioEspecialista () {
 
 function validarFormularioEspecialistaupdate () {
   if ($('#solucionupdate').val().trim().length<1) {
-    swal('Atención', "El Nombre es requerido", 'info');
+    swal('Atención', "La solución es requerida", 'info');
     return false;
   }
   
