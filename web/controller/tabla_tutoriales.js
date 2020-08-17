@@ -53,7 +53,7 @@ function obtenerTutorialesAlumno(){
           table.fnAddData([
             data[i]["id_tutorial"],
             data[i]["nombre_tutorial"],
-            data[i]["link_video"],
+            '<a href = ' + data[i]['link_video'] + '">' + data[i]['link_video'] + '<\a>',
             "<button type='button' class='btn btn-info btn-xs' onclick='mostrar(" + data[i]["id_tutorial"] + ");' title='Instrucciones'>"+
             "<i class='fas fa-eye'></i></button>"
           ]);
@@ -119,7 +119,7 @@ function obtenerTutorialesAdministrador(){
           table.fnAddData([
             data[i]["id_tutorial"],
             data[i]["nombre_tutorial"],
-            data[i]["link_video"],
+            '<a href = ' + data[i]['link_video'] + '">' + data[i]['link_video'] + '<\a>',
             "<button type='button' class='btn btn-warning btn-xs' onclick='editar(" + data[i]["id_tutorial"] + ");' title='Editar'>"+
             "<i class='fas fa-edit'></i></button>&nbsp;" +
             "<button type='button' class='btn btn-danger btn-xs' onclick='eliminar(" + data[i]["id_tutorial"] + ");' title='Eliminar'>"+

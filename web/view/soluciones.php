@@ -33,7 +33,6 @@ soluciones();
 					<div class="modal-body">
 						<div id="login_msg">
 							<div id="info_login_msg" class="glyphicon glyphicon-chevron-right"></div>
-							<span id="text_login_msg">Credenciales</span>
 							<div class="input-group" id="user_input">
 								<select id="lista_actividad" name="lista_actividad" class="form-control"></select>
 							</div>
@@ -69,7 +68,6 @@ soluciones();
 					<div class="modal-body">
 						<div id="login_msg">
 							<div id="info_login_msg" class="glyphicon glyphicon-chevron-right"></div>
-							<span id="text_login_msg">Credenciales</span>
 							<div class="input-group" id="user_input">
 								<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 								<textarea id="solucionupdate" type="text" class="form-control" name="solucionupdate" rows="3"  placeholder="Solucion del ejercicio" required></textarea>
@@ -101,7 +99,6 @@ soluciones();
 					<div class="modal-body">
 						<div id="login_msg">
 							<div id="info_login_msg" class="glyphicon glyphicon-chevron-right"></div>
-							<span id="text_login_msg">Instrucciones</span>
 							<p></p>
 							<p id="instrucciones_texto" name="instrucciones_texto"></p>
 						</div>

@@ -203,7 +203,7 @@ function main_pagina_in (){
 		</section>
 		<section>
 			<div class="contenedor2">
-				<h2 class="titulo">Cantidad de actividades por lenguaje</h2>
+				<h2 class="titulo">Actividades según lenguaje de programación</h2>
 				<div class="row">
 				   <div class="col-md-12">	 
 					   <canvas id="miGrafico1"></canvas> 
@@ -214,7 +214,7 @@ function main_pagina_in (){
 		</section>
 		<section>
 			<div class="contenedor2">
-				<h2 class="titulo">Cantidad de actividades según la dificultad</h2>
+				<h2 class="titulo">Actividades según dificultad</h2>
 				<div class="row">
 				   <div class="col-md-12">	 
 					   <canvas id="miGrafico2"></canvas> 
@@ -278,13 +278,13 @@ function main_pagina_out(){
 				<h2 class="titulo">Lenguajes de Programación disponibles</h2>
 				<div class="galeria-port">
 					<div class="imagen-galeria">
-						<img src="../img/imagen1.png" alt="">
-					</div>
-					<div class="imagen-galeria">
 						<img src="../img/imagen2.jpg" alt="">
 					</div>
 					<div class="imagen-galeria">
 						<img src="../img/imagen3.jpg" alt="">
+					</div>
+					<div class="imagen-galeria">
+						<img src="../img/imagen1.png" alt="">
 					</div>
 					<div class="imagen-galeria">
 						<img src="../img/imagen4.jpg" alt="">
@@ -391,7 +391,7 @@ function navbar_lenguaje(){
 									<ul class="nospace">
 										<li><a href="../view/index.php"><i class="fa fa-lg fa-home"></i></a></li>
 										<li id = "usuario"><span class="glyphicon glyphicon-user"></span> {$_SESSION['username']} </a>
-										<li><a href="../lib/logout.php"><span class="glyphicon glyphicon-log-in"></span> Cerrar</a></li>
+										<li><a href="../lib/logout.php"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
 									</ul>
 								</div>
 							</div>
@@ -408,48 +408,28 @@ echo $str;
 }
 
 function pagina_lenguaje (){
-	$str = <<<EOF
-
-					<div class="row">
-						<div class="col-xl-8 col-lg-7">
-							<div class="card shadow mb-4">
-								<div class="card-body">
-									<canvas id="myChart" width=25 height="20"></canvas>			  
-								</div>
-							</div>
-						</div>
-					</div>
+	$C = <<<EOF
 					<div class="row">
 						<div class="col-xl-8 col-lg-7">
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+									<h6 class="m-0 font-weight-bold text-primary">¿Qué es?</h6>
 								</div>
 								<div class="card-body">
-									<div class="text-center">
-										<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="bucle-while-pciture.png" alt="">
-									</div>
-									<p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
-									<a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
-									<div class="text-center">
-										<iframe width="560" height="315" src="https://www.youtube.com/embed/iVt04mP5nc8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-									</div>
-									<p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
-									<a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
+									<p>
+									C es un lenguaje de programación de propósito general originalmente desarrollado por Dennis Ritchie entre 1969 y 1972 en los Laboratorios Bell, como evolución del anterior lenguaje B, a su vez basado en BCPL.
+									</p>
 								</div>
 							</div>
 						</div>
 						<div class="col-xl-4 col-lg-5">
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+									<h6 class="m-0 font-weight-bold text-primary">Usos</h6>
 								</div>
 								<div class="card-body">
-									<div class="text-center">
-										<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
-									</div>
-									<p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
-									<a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
+									<p>C es utilizado, entre otras cosas, para el desarrollo de sistemas operativos. Sistemas operativos como Unix y Linux son escritos en C.
+									</br>C además es el precursos de muchos lenguajes de alto nivel como Python, Perl, PHP y Ruby.</p>
 								</div>
 							</div>
 						</div>
@@ -458,38 +438,258 @@ function pagina_lenguaje (){
 						<div class="col-lg-6 mb-4">
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+									<h6 class="m-0 font-weight-bold text-primary">Ventajas</h6>
 								</div>
 								<div class="card-body">
-									<div class="text-center">
-										<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
-									</div>
-									<p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
-									<a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
+									<ul>
+										<li>Minimalista, sencillo.
+										<li>Acceso a memoria directamente, sin "capas de protección" aparte del Sistema Operativo.
+										<li>Rendimiento increíble debido a que su código se compila directamente a instrucciones de procesador y a la gran cantidad de optimizaciones que hace el compilador.
+									</ul>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-6 mb-4">
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+									<h6 class="m-0 font-weight-bold text-primary">Desventajas</h6>
 								</div>
 								<div class="card-body">
-									<div class="text-center">
-										<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
-									</div>
-									<p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
-									<a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
+								<ul>
+									<li>Por el tipo de estructura: No es un lenguaje visual, no puede ser deducido de forma intuitiva, como por ejemplo el Visual Basic.</li>
+									<li>Encapsulación: Para el uso de funciones anidadas necesita de extensiones. No tiene instrucciones de entrada y salida, ni para el manejo de cadenas de caracteres. </li>
+									<li>Por la forma de procesamiento: Carece de instucciones que faciliten a los desarrolladores la programación multihilo.</li>
+									<li>No cuenta con instrucciones para programación dirigida a objetos.</li>
+								</ul>
 								</div>
 							</div>
 						</div>
-					</div>		
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 EOF;
-echo $str;
+$CPP = <<<EOF
+					<div class="row">
+						<div class="col-xl-8 col-lg-7">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">¿Qué es?</h6>
+								</div>
+								<div class="card-body">
+									<p>
+										Es un lenguaje de programación de propósito general creado por Bjarne Stroustrup como una extensión del lenguaje de programación C, o "C con clases".</br>
+										El lenguaje se ha expandido significativamente con el tiempo, y C ++ moderno ahora tiene características funcionales, genéricas y orientadas a objetos, además de facilidades para la manipulación de memoria de bajo nivel.</br>
+										Casi siempre se implementa como un lenguaje compilado, y muchos proveedores proporcionan compiladores C++, incluidos Free Software Foundation, LLVM, Microsoft, Intel, Oracle e IBM, por lo que está disponible en muchas plataformas.
+										</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-lg-5">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Usos</h6>
+								</div>
+								<div class="card-body">
+									<p>C++ es usado por muchas aplicaciones que tienen como prioridad la optimización de recursos y el buen control sobre la memoria, por supuesto, sin dejar de lado la escalabilidad, modularidad y la distribución por varias plataformas.</br>
+									C++ es tan poderoso que se utiliza en muchos proyectos importantes: TensorFlow para Machine Learning, V8 como el motor de JavaScript para Google Chrome y Node.js, Electron para crear aplicaciones de escritorio con HTML, CSS y JavaScript, entre otras.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6 mb-4">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Ventajas</h6>
+								</div>
+								<div class="card-body">
+									<ul>
+										<li>Lenguaje de programación orientado a objetos.</li>
+										<li>Es muy potente en lo que se refiere a creación de sistemas complejos un lenguaje muy robusto.</li>
+										<li>Permite elaborar aplicaciones cencillas como un"hello world".</li>
+										<li>Existen muchas algoritmos cuyo pseudocodigo se encuentran desarrollados en C++</li>
+										<li>Es ideal para programar sistemas operativos</li>
+										<li>Hay muchos codigos</li>
+										</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 mb-4">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Desventajas</h6>
+								</div>
+								<div class="card-body">
+									<ul>
+										<li>Uso de DLLs (librerías dinámicas) muy complejo. Java y .Net han evolucionado estos conceptos manipulando las DLLs mediante los frameworks que proveen. En cambio, en C++ el desarrollador debe encargarse de cargar y liberar de memoria estas librerías, y correr los riesgos por el manejo de esta memoria.</li>
+										<li>Elaborar un sistema en C++ es como construir un rascacielos: tiene buen soporte y es robusto, pero si existen errores en los pisos inferiores toda la parte superior se viene abajo terriblemente.</li>
+										<li>Manejo de punteros y memoria respecto a ello. Claro, esta también es una gran ventaja porque permite un mejor control de la memoria y una buena administración de recursos de computadora, pero la inexperiencia de los desarrolladores o la pérdida de costumbre con este tipo de variables (sobre todo cuando son dobles o triples punteros, inclusive de mayor orden) los lleva al desastre.</li>
+										<li>No es recomendable para desarrollo de páginas Web.</li>
+										<li>Uno de los motivos que más quebraderos de cabeza ha traído a los programadores en lenguaje C es la correcta liberación de la memoria. Si se te olvida liberar algo de memoria, cuando el programa termina esa memoria se queda ocupada (aunque el programa ya no siga ejecutándose), son los famosos “Memory Leaks”.</li>
+										<li>Es difícil (o por lo menos no es tan sencillo como en otros lenguajes) programar bases de datos</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+EOF;
+
+$PYTHON = <<<EOF
+					<div class="row">
+						<div class="col-xl-8 col-lg-7">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">¿Qué es?</h6>
+								</div>
+								<div class="card-body">
+									<p>
+									Python es un lenguaje de programación interpretado cuya filosofía hace hincapié en la legibilidad de su código.</br>
+									Se trata de un lenguaje de programación multiparadigma, ya que soporta orientación a objetos, programación imperativa y, en menor medida, programación funcional.</br>
+									Es un lenguaje interpretado, dinámico y multiplataforma.	
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-lg-5">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Usos</h6>
+								</div>
+								<div class="card-body">
+									<p>
+									Puedes programar en varios estilos dentro de la llamada programación multiparadigma: estructurada, funcional, orientada a objetos o a aspectos. No obstante, sus principales beneficios van más allá de esas posibilidades del desarrollo web. Este software es muy versátil y útil para la automatización de procesos con el fin de ahorrarte complicaciones.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6 mb-4">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Ventajas</h6>
+								</div>
+								<div class="card-body">
+									<ul>
+										<li>Simplificado y rápido: Este lenguaje simplifica mucho la programación. Es un gran lenguaje para scripting, si usted requiere algo rápido, con unas cuantas líneas ya está resuelto.</li>
+										<li>Elegante y flexible: El lenguaje le da muchas herramientas, si usted quiere listas de varios tipo de datos, no hace falta que declares cada tipo de datos. Es un lenguaje tan flexible que no requiere preocuparse tanto por los detalles.</li>
+										<li>Programación sana y productiva: Es sencillo de aprender, direccionado a las reglas perfectas, le hace como dependiente de mejorar, cumplir las reglas, el uso de las lineas, de variables”.</br>Ademas es un lenguaje que fue hecho con productividad en mente, es decir, Python le hace ser mas productivo, le permite entregar en los tiempos que me requieren.</li>
+										<li>Ordenado y limpio: El orden que mantiene Python, es de lo que más le gusta a sus usuarios, es muy legible, cualquier otro programador lo puede leer y trabajar sobre el programa escrito en Python. Los módulos están bien organizados, a diferencia de otros lenguajes.</li>
+										<li>Portable: Es un lenguaje muy portable en comparación con otros lenguajes. La filosofía de baterías incluidas, son las librerías que más usted necesita al día a día de programación, ya están dentro del interprete, no tiene la necesidad de instalarlas adicionalmente con en otros lenguajes.</li>
+										<li>Comunidad: Algo muy importante para el desarrollo de un lenguaje es la comunidad, la misma comunidad de Python cuida el lenguaje y casi todas las actualizaciones se hacen de manera democrática.</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 mb-4">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Desventajas</h6>
+								</div>
+								<div class="card-body">
+									<ul>
+										<li>Curva de aprendizaje: La “curva de aprendizaje cuando ya estás en la parte web no es tan sencilla”.</li>
+										<li>Hosting: La mayoría de los servidores no tienen soporte a Python, y si lo soportan, la configuración es un poco difícil.</li>
+										<li>Librerías incluidas: Algunas librerías que trae por defecto no son del gusto de amplio de la comunidad, y optan a usar librerías de terceros.</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+EOF;
+
+$JAVA = <<<EOF
+					<div class="row">
+						<div class="col-xl-8 col-lg-7">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">¿Qué es?</h6>
+								</div>
+								<div class="card-body">
+									<p>
+										Java es un lenguaje de programación de propósito general basado en clases, orientado a objetos y diseñado para tener la menor cantidad posible de dependencias de implementación. </br>
+										Está destinado a permitir que los desarrolladores de aplicaciones escriban una vez, se ejecuten en cualquier lugar (WORA), lo que significa que el código Java compilado puede ejecutarse en todas las plataformas que admiten Java sin necesidad de volver a compilar
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-lg-5">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Usos</h6>
+								</div>
+								<div class="card-body">
+									<p>
+										Java sirve para crear aplicaciones y procesos en una gran diversidad de dispositivos. Se base en programación orientada a objetivos, permite ejecutar un mismo programa en diversos sistemas operativos y ejecutar el código en sistemas remotos de manera segura.</br>
+										Su ámbito de aplicación es tan amplio que Java se utiliza tanto en móviles como en electrodomésticos. Muchos programadores también utilizan este lenguaje para crear pequeñas aplicaciones que se insertan en el código HTML de una página para que pueda ser ejecutada desde un navegador.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6 mb-4">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Ventajas</h6>
+								</div>
+								<div class="card-body">
+									<ul>
+										<li>La principal característica de Java es que es independiente de la plataforma (multiplataforma). Esto significa que cuando estás programando en Java, no necesitas conocer a priori el tipo de ordenador o el sistema operativo para el que estás programando. Puedes ejecutar EL MISMO programa en un PC con Windows, otro con Linux, en un Servidor SUN con sistema operativo Solaris, o en un teléfono móvil de última generación.</li>
+										<li>El lenguaje Java es orientado a objetos. El paradigma de programación orientada a objetos supuso un gran avance en el desarrollo de aplicaciones, ya que es capaz de acercar la forma de programar a la forma de pensar del ser humano.</li>
+										<li>En java no existen problemas con la liberacion de memoria en el sistema: En Java decidieron romper con el sistema tradicional de liberación de memoria, haciendo que el programador ya no fuese el responsable de esa tarea. Así, lo único que necesita hacer el programador es solicitar la memoria al sistema.</li>
+										<li>El lenguaje Java es relativamente fácil de aprender comparado con otros.</li>
+										<li>Librerías Estándar: Una de las características que más potencia aporta al lenguaje Java es que viene acompañado de una serie de librerías estándar para realizar multitud de operaciones comunes a la hora de programar. Es el llamado Java API, que incluye tres bloques básicos.</li>
+										<li>Hoy en día existen excelentes editores (IDEs) que aportan multitud de ayudas a la programación, haciendo que el desarrollo sea más fluido y cómodo.</li>
+										<li>Una de las soluciones más elegantes propuestas por el lenguaje Java a uno de los problemas recurrentes en otros lenguajes de programación es la gestión de errores a través de excepciones. en C o C++ no existe un mecanismo específico para la gestión de los errores que puedan producirse en el código.</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 mb-4">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Desventajas</h6>
+								</div>
+								<div class="card-body">
+									<ul>
+										<li>Al tratarse de un lenguaje interpretado, el rendimiento en la ejecución de programas suele ser un poco menor.</li>
+										<li>Al contrario que los programas compilados a código nativo, sólo podemos ejecutar un programa en Java si disponemos de una máquina virtual (JVM), sin este simulador no podremos ejecutar ningún programa escrito en Java.</li>
+										<li>Aunque java es un lenguaje relativamente sencillo de manejar, no es recomendado implementarlo con personas que apenas se unen a este mundo, ya que Java se basa en una filosofía de programación (la orientación a objetos) que es una evolución de otras formas de entender la programación mas sencillas de enseñar e implementar.</li>
+										<li>Su sintaxis comparada con C# o Python parece para algunos bastante engorrosa y al contrario que su semejante en .NET, C#, es un lenguaje que evoluciona muy lentamente.</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+EOF;
+
+if ($_SESSION["lenguaje"] == 1){
+	echo $C;
+}
+if ($_SESSION["lenguaje"] == 2){
+	echo $CPP;
+}
+if ($_SESSION["lenguaje"] == 3){
+	echo $PYTHON;
+}
+if ($_SESSION["lenguaje"] == 4){	
+	echo $JAVA;
+}
 }
 
 function ejercicios(){
@@ -498,7 +698,7 @@ function ejercicios(){
 						<div class="container-fluid">
 							<div class="card shadow mb-4">
             					<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">Repositorio de Ejerciciciosxdd</h6>
+									<h6 class="m-0 font-weight-bold text-primary">Ejercicicios</h6>
             					</div>
 								<div class="card-body">
 									<div class="table-responsive">
@@ -518,7 +718,7 @@ EOF;
 						<div class="container-fluid">
 							<div class="card shadow mb-4">
             					<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">Repositorio de Ejerciciciosxddxd</h6>
+									<h6 class="m-0 font-weight-bold text-primary">Ejercicicios</h6>
             					</div>
 								<div class="card-body">
 									<div class="table-responsive">
@@ -547,7 +747,7 @@ function tutoriales(){
 						<div class="container-fluid">
 							<div class="card shadow mb-4">
             					<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">Repositorio de Tutoriales</h6>
+									<h6 class="m-0 font-weight-bold text-primary">Tutoriales</h6>
             					</div>
 								<div class="card-body">
 									<div class="table-responsive">
@@ -567,7 +767,7 @@ EOF;
 						<div class="container-fluid">
 							<div class="card shadow mb-4">
             					<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">Repositorio de Tutoriales</h6>
+									<h6 class="m-0 font-weight-bold text-primary">Tutoriales</h6>
             					</div>
 								<div class="card-body">
 									<div class="table-responsive">
@@ -597,7 +797,7 @@ function soluciones(){
 						<div class="container-fluid">
 							<div class="card shadow mb-4">
             					<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">Repositorio de respuestas</h6>
+									<h6 class="m-0 font-weight-bold text-primary">Soluciones</h6>
             					</div>
 								<div class="card-body">
 									<div class="table-responsive">
@@ -656,27 +856,17 @@ function footer_paginas(){
 	<script src="../vendor/datatables/jquery.dataTables.min.js"></script>
 	<script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 	<script src="../js/demo/datatables-demo.js"></script>
-	
-
-	
 	<script src="../pdf/dataTables.buttons.min.js"></script>
 	<script src="../pdf/jszip.min.js"></script>
 	<script src="../pdf/pdfmake.min.js"></script>
 	<script src="../pdf/vfs_fonts.js"></script>
-	<script src="../pdf/buttons.html5.min.js"></script>
-	
+	<script src="../pdf/buttons.html5.min.js"></script>	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js" integrity="sha256-JG6hsuMjFnQ2spWq0UiaDRJBaarzhFbUxiUTxQDA9Lk=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
 	<script src="../vendor/chart.js/Chart.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" integrity="sha256-CfcERD4Ov4+lKbWbYqXD6aFM9M51gN4GUEtDhkWABMo=" crossorigin="anonymous"></script>
-
 	<script src="../controller/grafico.js"></script>
-	
-
 EOF;
 echo $str;
 }
-
-
-
 ?>

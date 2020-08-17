@@ -75,7 +75,6 @@ ejercicios();
 					<div class="modal-body">
 						<div id="login_msg">
 							<div id="info_login_msg" class="glyphicon glyphicon-chevron-right"></div>
-							<span id="text_login_msg">Instrucciones</span>
 							<p></p>
 							<p id="instrucciones_texto" name="instrucciones_texto"></p>
 						</div>
