@@ -108,7 +108,6 @@ soluciones();
 		</div>
 	</div>
 </div>
-
 <div id="modal_ayuda_popup" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -128,10 +127,8 @@ soluciones();
 		</div>
 	</div>
 </div>
-    
 <?php footer_paginas(); ?>
 <script src="../controller/tabla_soluciones.js"></script>
 <script type="text/javascript" src="../controller/combobox_actividad.js"></script>
-
 </body>
 </html>

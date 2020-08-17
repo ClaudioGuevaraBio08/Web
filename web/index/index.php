@@ -49,8 +49,6 @@ main_pagina_out();
 						<div class="modal-footer">
 							<div class="text-center">
 								<button id="submit_login" type="submit" class="btn btn-success btn-sm btn-block">Ingresar</button>
-								<p></p>
-								<a id="recuperarclave" class="d-block small" href="" data-toggle="modal" data-target="#modal_recuperarclave_popup">¿Olvidaste tu contraseña?</a>
 							</div>
 						</div>
 					</div>	

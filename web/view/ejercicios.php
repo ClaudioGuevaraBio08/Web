@@ -18,7 +18,6 @@ opcion_soluciones();
 navbar_lenguaje();
 ejercicios();
 ?>
-
 <div id="modal_ejercicios_popup" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -58,7 +57,6 @@ ejercicios();
 		</div>
 	</div>
 </div>
-
 <div id="modal_instrucciones_popup" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -82,7 +80,6 @@ ejercicios();
 		</div>
 	</div>
 </div>
-
 <div id="modal_soluciones_popup" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
