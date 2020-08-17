@@ -6,7 +6,10 @@ $(function() {
 function obtenerSoluciones(){
 	var accion_agregar = "<button type='button' class='btn btn-success btn-xs' " +
                        "onclick='agregar();' title='Agregar'>" + 
-                       "<i class='fas fa-plus'></i></button>";
+                       "<i class='fas fa-plus'></i></button>" +
+                       "<button type='button' class='btn btn-info btn-xs' " +
+                       "onclick='ayuda();' title='Ayuda'>" + 
+                       "<i class='fas fa-question'></i>";
     
 	var table = $('#tabla-soluciones').dataTable({
 		"columnDefs": [
@@ -84,7 +87,9 @@ function obtenerSoluciones(){
     }
   })
 }
-
+function ayuda(){
+  $("#modal_ayuda_popup").modal("show");
+}
 function mostrar(id_actividad){
 	$.post("../lib/tabla_soluciones.php?accion=6", {id_actividad: id_actividad}, function(response) {    
     if (response.success) {

@@ -2,15 +2,17 @@ $(function() {
 	obtenerTutorialesAlumno();	
 	obtenerTutorialesAdministrador();
 });
-
-
 function obtenerTutorialesAlumno(){
+  var acciones = "<button type='button' class='btn btn-info btn-xs' " +
+                  "onclick='ayuda();' title='Ayuda'>" + 
+                  "<i class='fas fa-question'></i>";
+
 	var table = $('#tabla-tutoriales-alumno').dataTable({
 		"columnDefs": [
       {"title": "N° Tutorial", "targets": 0, "orderable": true, "className": "dt-body-center", "visible": true},
       {"title": "Titulo", "targets": 1, "orderable": true, "className": "dt-body-center"},
       {"title": "Link", "targets": 2, "orderable": true, "className": "dt-body-center"},
-      {"title": "Opciones", "targets": 3, "orderable": false, "className": "dt-nowrap dt-right"},
+      {"title": acciones, "targets": 3, "orderable": false, "className": "dt-nowrap dt-right"},
     ],
     dom: 'Bfrtip',
         buttons: [
@@ -81,16 +83,20 @@ function obtenerTutorialesAlumno(){
 }
 
 function obtenerTutorialesAdministrador(){
-	var accion_agregar = "<button type='button' class='btn btn-success btn-xs' " +
+	var acciones = "<button type='button' class='btn btn-success btn-xs' " +
                        "onclick='agregar();' title='Agregar'>" + 
-                       "<i class='fas fa-plus'></i></button>";
+                       "<i class='fas fa-plus'></i></button>" +
+                       "<button type='button' class='btn btn-info btn-xs' " +
+                       "onclick='ayuda();' title='Ayuda'>" + 
+                       "<i class='fas fa-question'></i>";
+
     
 	var table = $('#tabla-tutoriales-administrador').dataTable({
 		"columnDefs": [
       {"title": "N° Tutorial", "targets": 0, "orderable": true, "className": "dt-body-center", "visible": true},
       {"title": "Titulo", "targets": 1, "orderable": true, "className": "dt-body-center"},
       {"title": "Link", "targets": 2, "orderable": true, "className": "dt-body-center"},
-      {"title": accion_agregar, "targets": 3, "orderable": false, "className": "dt-nowrap dt-right"},
+      {"title": acciones, "targets": 3, "orderable": false, "className": "dt-nowrap dt-right"},
     ],
     dom: 'Bfrtip',
         buttons: [
@@ -182,11 +188,11 @@ function mostrar(id_tutorial){
           window.location = response.location;
         }, 1500);
     }
-  }, 'json');
-	
-	
+  }, 'json');	
 }
-
+function ayuda(){
+  $("#modal_ayuda_popup").modal("show");
+}
 /* levanta el modal para ingresar datos */
 function agregar() {
   $("#titulo-modal-tutorial").html("Tutorial");

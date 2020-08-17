@@ -109,6 +109,25 @@ soluciones();
 	</div>
 </div>
 
+<div id="modal_ayuda_popup" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title"><span id="titulo-modal-instrucciones"></span>Ayuda</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<!--form-->
+			<div id="div_form_login">
+				<!--login form-->
+				<form id="instrucciones_form"  name="instrucciones_form" class="form-horizontal" role="form" action="" method="POST">
+					<div class="modal-body">
+						<img src="../img/ayuda_solucion.gif" alt="Ayuda"> 
+					</div>	
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
     
 <?php footer_paginas(); ?>
 <script src="../controller/tabla_soluciones.js"></script>

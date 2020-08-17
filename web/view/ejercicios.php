@@ -33,8 +33,6 @@ ejercicios();
 					<div class="modal-body">
 						<div id="login_msg">
 							<div id="info_login_msg" class="glyphicon glyphicon-chevron-right"></div>
-							<span id="text_login_msg">Credenciales</span>
-							<p></p>
 							<div class="input-group" id="user_input">
 								<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 								<input id="nombre" type="text" class="form-control" name="nombre"  placeholder="nombre" required>
@@ -108,10 +106,34 @@ ejercicios();
 		</div>
 	</div>
 </div>
-    
+<div id="modal_ayuda_popup" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title"><span id="titulo-modal-instrucciones"></span>Ayuda</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<!--form-->
+			<div id="div_form_login">
+				<!--login form-->
+				<form id="instrucciones_form"  name="instrucciones_form" class="form-horizontal" role="form" action="" method="POST">
+					<div class="modal-body">
+						<?php
+							if($_SESSION["tipo_usuario"] == 1){
+								echo '<img src="../img/ayuda_ejercicio.gif" alt="Ayuda"> ';
+							}
+							if($_SESSION["tipo_usuario"] == 2){
+								echo '<img src="../img/ayuda_cliente_ejercicios.gif" alt="Ayuda"> ';
+							}
+						?>	
+					</div>	
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 <?php footer_paginas(); ?>
 <script src="../controller/tabla_ejercicio.js"></script>
 <script type="text/javascript" src="../controller/combobox_dificultad.js"></script>
-
 </body>
 </html>
