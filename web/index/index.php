@@ -33,9 +33,6 @@ main_pagina_out();
 				<form id="login_form" name="login_form" class="form-horizontal" role="form" action="" method="POST">
 					<div class="modal-body">
 						<div id="login_msg">
-							<div id="info_login_msg" class="glyphicon glyphicon-chevron-right"></div>
-							<span id="text_login_msg">Credenciales</span>
-							<p></p>
 							<div class="input-group" id="user_input">
 								<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 								<input id="username" type="text" class="form-control" name="username"  placeholder="Correo" required>
@@ -71,9 +68,6 @@ main_pagina_out();
 				<form id="register_form" name="register_form" class="form-horizontal" role="form" action="" method="POST">
 					<div class="modal-body">
 						<div id="login_msg">
-							<div id="info_login_msg" class="glyphicon glyphicon-chevron-right"></div>
-							<span id="text_login_msg">Ingrese los datos</span>
-							<p></p>
 							<div class="input-group" id="user_input">
 								<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 								<input id="nombre" type="text" class="form-control" name="nombre"  placeholder="Nombre" required>
